@@ -1,0 +1,30 @@
+<%#= yield %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Curso Conceito - Login</title>
+    <%= stylesheet_link_tag  'login', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+  </head>
+
+  <body class="login">
+  <% flash.each do |key, value| %>
+  	<div style="position:fixed; top:0px; font:15px 'Trebuchet MS'; color:#73879C; width:100%; height:20px; text-align:center; padding:7px; padding-top:7px; font-weight:bolder; "><%= value %></div>
+  	<% end %>
+    <div>
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+           <%= yield %>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
