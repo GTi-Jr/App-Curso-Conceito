@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teacher: MyString
+  date: 2016-12-17 08:49:59
+  lesson_hour_start: 2016-12-17 08:49:59
+  lesson_hour_end: 2016-12-17 08:49:59
+  limit: 1
+
+two:
+  teacher: MyString
+  date: 2016-12-17 08:49:59
+  lesson_hour_start: 2016-12-17 08:49:59
+  lesson_hour_end: 2016-12-17 08:49:59
+  limit: 1

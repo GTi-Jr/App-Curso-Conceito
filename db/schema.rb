@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216221347) do
+ActiveRecord::Schema.define(version: 20161217135710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,56 @@ ActiveRecord::Schema.define(version: 20161216221347) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string   "title"
+    t.string   "file"
+    t.integer  "subcategory_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string   "teacher"
+    t.datetime "date"
+    t.time     "lesson_hour_start"
+    t.time     "lesson_hour_end"
+    t.integer  "limit"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "sub_categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "subscribeds", force: :cascade do |t|
+    t.boolean  "is_present"
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "possword"
+    t.string   "email"
+    t.string   "photo"
+    t.string   "name"
+    t.string   "birthday"
+    t.boolean  "blocked"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

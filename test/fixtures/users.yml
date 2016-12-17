@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  possword: MyString
+  email: MyString
+  photo: MyString
+  name: MyString
+  birthday: MyString
+  blocked: false
+
+two:
+  possword: MyString
+  email: MyString
+  photo: MyString
+  name: MyString
+  birthday: MyString
+  blocked: false
