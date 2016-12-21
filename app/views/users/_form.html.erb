@@ -1,0 +1,56 @@
+<div class="clearfix"></div>
+<div class="row">
+   <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+         <div class="x_title">
+            <h2>Cadastro de Alunos</h2>
+            <div class="clearfix"></div>
+         </div>
+         <div class="x_content">
+            <br />
+            <%= form_for @users, :html => { class:"form-horizontal form-label-left", id:"demo-form2"  } do |f| %>
+            <div class="form-group">
+               <%= f.label :name, class:"control-label col-md-3 col-sm-3 col-xs-12" %><span class="required">*</span><br />
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :name, class:"form-control col-md-7 col-xs-12", type:"text", placeholder: 'Nome completo'%>
+               </div>
+            </div>
+            <div class="form-group">
+               <%= f.label :email, class:"control-label col-md-3 col-sm-3 col-xs-12" %><span class="required">*</span><br />
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :email, class:"form-control col-md-7 col-xs-12", type:"text"%>
+               </div>
+            </div>
+            <div class="form-group">
+               <%= f.label :password, class:"control-label col-md-3 col-sm-3 col-xs-12" %><span class="required">*</span><br />
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :password, class:"form-control col-md-7 col-xs-12", type:"password"%>
+               </div>
+            </div>
+            <div class="form-group">
+               <%= f.label :phone_number, class:"control-label col-md-3 col-sm-3 col-xs-12" %><span class="required">*</span><br />
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.telephone_field :phone_number, autofocus: true, placeholder: 'xx-xxxxxxxxx',  class:"form-control col-md-7 col-xs-12"%>
+               </div>
+            </div>   
+            <div class="form-group">
+               <%= f.label :birthday, class:"control-label col-md-3 col-sm-3 col-xs-12" %><span class="required">*</span><br />
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.date_select :birthday, class:"form-control col-md-7 col-xs-12"%>
+               </div>
+            </div>
+            <div class="ln_solid">
+               <div class="form-group">
+                  <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                     <%= f.submit "Cadastrar", type:"submit", class:"btn btn-success" %>
+                     <%= link_to "Voltar", users_path, class:"btn btn-success" %>
+                  </div>
+               </div>
+            </div>
+            <% end %>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+</div>

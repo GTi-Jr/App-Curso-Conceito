@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Curso Conceito </title>
-    <%= stylesheet_link_tag  'dashboard', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag  'dashboard', media: 'all'%>
     <%= csrf_meta_tags %>
   </head>
 
@@ -26,7 +26,7 @@
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <%= image_tag "img.jpg", class: "img-circle profile_img" %>
               </div>
               <div class="profile_info">
                 <span>Bem-vindo,</span>
@@ -41,12 +41,12 @@
               <div class="menu_section">
                 <h3>Administrador</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Início </a>
+                  <li><a href="/"><i class="fa fa-home"></i> Início </a>
                   </li>
                   <li><a><i class="fa fa-child"></i> Alunos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="javascript:void(0)">Inserir Alunos</a></li>
-                      <li><a href="javascript:void(0)">Editar Alunos</a></li>
+                      <li><%= link_to "Lista de alunos", users_path %></li>
+                      <li><%= link_to "Inserir Alunos", new_user_path%></li>
                       <li><a href="javascript:void(0)">Gerenciar presença</a></li>
                     </ul>
                   </li>
@@ -99,8 +99,8 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt=""><%=current_admin.name%>
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
+                    <%= image_tag "img.jpg"%><%=current_admin.name%>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -164,9 +164,18 @@
     <% unless notice.nil? %>
     <script>
       $(document).ready(function() {
-        noty({text: ' <%= notice %>', layout: 'bottom', type: 'information', timeout: 4000});
+        noty({text: ' <%= notice %>', layout: 'bottom', type: 'success', timeout: 4000});
       });
     </script>
     <% end %>
+    <% if defined?(@users.errors) %>
+    <% if @users.errors.any? %>
+    <script>
+    $(document).ready(function() {
+      noty({text: ' <%= pluralize(@users.errors.count, "error") %> encontrado: </br><ul><% @users.errors.full_messages.each do   |message| %><li><%= message %></li><% end %></ul>', layout: 'bottom', type: 'warning', timeout: 4000});
+    });
+    </script>
+<% end
+  end %>
   </body>
 </html>

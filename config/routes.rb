@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  
 
+ 
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     confirmations: 'admins/confirmations',
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
   } , skip: [:registrations]
 
   authenticated :admin do
+    resources :users
+
   end
 
   unauthenticated :admin do

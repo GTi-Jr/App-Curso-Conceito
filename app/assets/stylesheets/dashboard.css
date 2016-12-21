@@ -5,6 +5,11 @@
 
   *= require font-awesome/css/font-awesome.min.css
   *= require css/custom.css
-
+  *= require data-table/dataTables.bootstrap.min.css
+  *= require data-table/buttons.bootstrap.min.css
+  *= require data-table/fixedHeader.bootstrap.min.css
+  *= require data-table/responsive.bootstrap.min.css
+  *= require data-table/scroller.bootstrap.min.css
+  *= require data-table/custom.min.css
   *= require_self
 */
