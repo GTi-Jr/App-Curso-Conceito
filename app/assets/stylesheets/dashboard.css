@@ -13,3 +13,10 @@
   *= require data-table/custom.min.css
   *= require_self
 */
+.circular {
+   width: 40px;
+   border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  
+  }

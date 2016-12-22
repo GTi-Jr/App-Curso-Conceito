@@ -11,7 +11,7 @@ class UsersController < BaseController
   def create
 
     @users = User.new(user_params)
-
+    @users.photo = params[:file]
     respond_to do |format|
       if @users.save
         format.html { redirect_to users_path, notice1: 'Aluno foi criado com sucesso.' }
@@ -50,6 +50,6 @@ end
   end
   
   def user_params
-      params.require(:user).permit(:name, :email, :password, :birthday, :phone_number)
+      params.require(:user).permit(:name, :email, :password, :birthday, :phone_number, :photo)
   end
 end
