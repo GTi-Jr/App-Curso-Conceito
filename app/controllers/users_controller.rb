@@ -1,7 +1,9 @@
 class UsersController < BaseController
    before_action :set_user, only: [:show, :edit, :update, :destroy]
+  
   def index
-    @users= User.all 	
+    @users= User.all.order('id DESC').paginate(page: params[:page], per_page: 50)
+
   end
 
   def new
@@ -11,7 +13,6 @@ class UsersController < BaseController
   def create
 
     @users = User.new(user_params)
-    @users.photo = params[:file]
     respond_to do |format|
       if @users.save
         format.html { redirect_to users_path, notice1: 'Aluno foi criado com sucesso.' }
@@ -47,6 +48,7 @@ end
 
   def set_user
       @users = User.find(params[:id])
+      @users.photo = params[:file]
   end
   
   def user_params
