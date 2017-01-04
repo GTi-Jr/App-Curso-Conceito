@@ -45,13 +45,37 @@
 
 //= require_tree .
 
+      function myFunction() {
+        // Declare variables 
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("mytable");
+        tr = table.getElementsByTagName("tr");
 
-
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          } 
+        }
+      }
  
-$(document).ready(function() {
+ 
+ /*$(document).ready(function() {
         var handleDataTableButtons = function() {
           if ($("#datatable-buttons").length) {
             $("#datatable-buttons").DataTable({
+             
+           "ordering": false
+
+        
+            
               "oLanguage": {
                     "sEmptyTable": "Nenhum registro encontrado",
                     "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -77,7 +101,7 @@ $(document).ready(function() {
                     },
 
 
-              dom: "Bfrtip",
+              dom: "Bfrti",
               buttons: [
                 {
                   extend: "copy",
@@ -134,4 +158,5 @@ $(document).ready(function() {
         });
 
         TableManageButtons.init();
-      });
+      }); 
+

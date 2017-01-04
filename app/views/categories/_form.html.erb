@@ -1,0 +1,25 @@
+<div class="clearfix"></div>
+<div class="row">
+   <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+         <div class="x_title">
+            <h2>Cadastro de Categorias</h2>
+            <div class="clearfix"></div>
+         </div>
+         <div class="x_content">
+            <br />
+            
+            <%= form_for @categories, :html => { class:"form-horizontal form-label-left", id:"demo-form2"  } do |f| %>
+            <div class="form-group">
+               <%= f.label :name, class:"control-label col-md-3 col-sm-3 col-xs-12" %><span class="required">*</span><br />
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :name, class:"form-control col-md-7 col-xs-12", type:"text"%>
+               </div>
+            <%= f.submit "Cadastrar", type:"submit", class:"btn btn-success" %>
+            <%= link_to "Voltar", categories_path, class:"btn btn-success" %>
+            </div>
+            <% end %>
+</div>
+   </div>
+      </div>
+         </div>

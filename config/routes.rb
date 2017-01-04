@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
 
  
   devise_for :users,  controllers: {
@@ -9,19 +8,6 @@ Rails.application.routes.draw do
     registrations:'api/users/registrations',
     omniauth_callbacks: 'api/users/omniauth_callbacks'
   }
-
-  authenticated :user do
-    resources :users
-    root 'api_dashboard#index'
-
-  end
-
-  unauthenticated :user do
-    root 'api_dashboard#index'
-  end
-
-
-
 
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
@@ -42,6 +28,8 @@ Rails.application.routes.draw do
 
   authenticated :admin do
     resources :users
+    resources :categories
+    resources :sub_categories
   end
 
   unauthenticated :admin do

@@ -6,7 +6,19 @@
          <div class="clearfix"></div>
       </div>
       <div class="x_content">
-         <table id="datatable-buttons", class="table table-striped table-bordered">
+      <%= will_paginate @users %>
+         <table id="mytable", class="table table-striped table-bordered">
+         <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
             <thead>
                <tr>
                   <th>-</th>-
@@ -36,10 +48,37 @@
                   </td>
                </tr>
                <%end%>
+               <!--<td colspan="7" id="error" hidden="" >Nenhum cadastro encontrado</td>-->
             </tbody>
          </table>
 
       </div>
    </div>
-<%= link_to 'Novo aluno', new_user_path,  class:"btn btn-success" %>
 </div>
+
+<%= will_paginate @users %>
+ <!--<script>
+ function myFunction() {
+        // Declare variables 
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("mytable");
+        tr = table.getElementsByTagName("tr");
+        //search users table
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+              $("#error").hide()
+            } else {
+              tr[i].style.display = "none";
+
+              
+            }
+          } else {
+            $("#error").show()
+            }
+        }
+      }</script>-->
