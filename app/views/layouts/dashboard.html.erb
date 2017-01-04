@@ -45,7 +45,7 @@
                   </li>
                   <li><a><i class="fa fa-child"></i> Alunos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><%= link_to "Lista de alunos", users_path %></li>
+                      <li><%= link_to "Gerenciar Alunos", users_path %></li>
                       <!--<li><%= link_to "Inserir Alunos", new_user_path%></li>-->
                       <li><a href="javascript:void(0)">Gerenciar presença</a></li>
                     </ul>
@@ -59,11 +59,10 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Matérias <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><%=link_to "Lista de Categorias", categories_path %></li>
-                      <li><%= link_to "Inserir Categorias", new_category_path %></li>
-                      <li><%= link_to "Lista de Subcategorias", sub_categories_path %></li>
-                      <li><%= link_to "Inserir Subcategorias", new_sub_category_path %></li>
+                      <li><%=link_to "Gerenciar Categorias", categories_path %></li>
+                      <li><%= link_to "Gerenciar Subcategorias", sub_categories_path %></li>
                       <li><a href="javascript:void(0)">Gerenciar Displinas</a></li>
+                      <li><%= link_to "Gerenciar Disciplinas", contents_path %></li>
                     </ul>
                   </li>
                 </ul>

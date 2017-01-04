@@ -54,7 +54,7 @@ end
    
   def search
     @sub_categories_suggestions = SearchTable.searchsub_category(queryString: params[:queryString].strip.upcase)
-s
+
     render json: @sub_categories_suggestions, :include => {:category => {:only => :name}}
     
   end

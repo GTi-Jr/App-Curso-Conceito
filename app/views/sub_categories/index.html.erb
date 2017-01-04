@@ -10,7 +10,7 @@
              <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" id="myInput" onkeyup="searchSubCategory(this.value);" class="form-control" placeholder="Search for...">
+                    <input class="form-control" id="inputSuccess5" onkeyup="searchSubCategory(this.value);" class="form-control" placeholder="Procurar">
                   </div>
                 </div>
               </div>
@@ -19,7 +19,7 @@
                   <th>Nome</th>
                   <th>Categoria</th>
                   <th>Criado em</th>
-                  <th> Settings </th>
+                  <th>Configurações</th>
                </tr>
             </thead>
             <tbody id="tablerowsub_category">
@@ -45,28 +45,3 @@
    <%= link_to 'Nova Subcategoria', new_sub_category_path,  class:"btn btn-success" %>
 </div>
 <%= will_paginate @sub_categories %>
-
-<%= javascript_include_tag 'dashboard' %>
-    <% unless alert.nil? %>
-    <script>
-      $(document).ready(function() {
-      noty({text: ' <%= alert %>', layout: 'bottom', type: 'warning', timeout: 4000});
-      });
-    </script>
-    <% end %>
-    <% unless notice.nil? %>
-    <script>
-      $(document).ready(function() {
-        noty({text: ' <%= notice %>', layout: 'bottom', type: 'success', timeout: 4000});
-      });
-    </script>
-    <% end %>
-    <% if defined?(@sub_categories.errors) %>
-    <% if @sub_categories.errors.any? %>
-    <script>
-    $(document).ready(function() {
-      noty({text: ' <%= pluralize(@sub_categories.errors.count, "error") %> encontrado: </br><ul><% @sub_categories.errors.full_messages.each do   |message| %><li><%= message %></li><% end %></ul>', layout: 'bottom', type: 'warning', timeout: 4000});
-    });
-    </script>
-<% end
-  end %>

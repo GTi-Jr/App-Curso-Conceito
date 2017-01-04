@@ -9,8 +9,9 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'api/users/omniauth_callbacks'
   }
 
-
-
+  authenticated :user do
+    get 'loginapi' => 'api_dashboard#index'
+  end
 
 
   devise_for :admins, controllers: {
@@ -34,8 +35,12 @@ Rails.application.routes.draw do
     resources :users
     resources :categories
     resources :sub_categories
+
     post 'search/categories' => 'categories#search'
     post 'search/sub_categories' => 'sub_categories#search'
+
+
+    resources :contents
 
   end
 

@@ -38,8 +38,6 @@ function searchCategory(input){
   $.post("/search/categories", {queryString: "" + input + ""}, function(data) {
 
     if (data===false){
-
-      $("#tablerow").html("");
          cols = "";
          cols += "<tr>";
         cols += '<td colspan="3" style="text-align:center">Nada encontrado</td></tr>';
@@ -69,14 +67,13 @@ function searchSubCategory(input){
 
     if (data===false){
 
-      $("#tablerow").html("");
          cols = "";
          cols += "<tr>";
         cols += '<td colspan="4" style="text-align:center">Nada encontrado</td></tr>';
     }
 
     jQuery.each(data, (key, value) => {
-
+      console.log(value);
   
                /*LOAD TABLE */
                     cols += "<tr>";
@@ -94,3 +91,8 @@ function searchSubCategory(input){
                
 
 }
+            var convertDate = function(usDate) {
+            var dateParts = usDate.split(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+              return dateParts[3] + "-" + dateParts[2] + "-" + dateParts[1];
+              }
+              data_trans_n = convertDate(data_trans);

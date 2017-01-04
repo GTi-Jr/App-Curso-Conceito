@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20170104105323) do
-=======
-ActiveRecord::Schema.define(version: 20161230161247) do
->>>>>>> 4f0a49480002e23ed88be3340aaf7fb743201635
+ActiveRecord::Schema.define(version: 20170104140153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +98,7 @@ ActiveRecord::Schema.define(version: 20161230161247) do
     t.datetime "oauth_expires_at"
     t.date     "birthday"
     t.boolean  "blocked",                default: false
+    t.string   "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
