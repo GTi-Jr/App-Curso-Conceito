@@ -12,8 +12,11 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name   # assuming the user model has a name
       user.image = auth.info.image
-      user.birthday = Date.strptime(auth.extra.raw_info.birthday, "%m/%d/%Y")
-
+      if auth.extra.raw_info.birthday.nil?
+        user.birthday = nil
+      else
+        user.birthday = Date.strptime(auth.extra.raw_info.birthday, "%m/%d/%Y")
+      end
       user.oauth_token = auth.credentials.token #aqui você pode receber o token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
