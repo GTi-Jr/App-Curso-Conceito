@@ -61,7 +61,7 @@ class CategoriesController < BaseController
 
 
   def search
-    @categories_suggestions = SearchTable.searchcategory(queryString: params[:queryString].strip.upcase)
+    @categories_suggestions = SearchTable.searchcategory(queryString: params[:queryString].strip.downcase)
 
     render json: @categories_suggestions 
   end

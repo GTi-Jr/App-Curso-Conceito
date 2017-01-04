@@ -81,8 +81,41 @@ function searchSubCategory(input){
                
 
 }
-            var convertDate = function(usDate) {
-            var dateParts = usDate.split(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
-              return dateParts[3] + "-" + dateParts[2] + "-" + dateParts[1];
-              }
-              data_trans_n = convertDate(data_trans);
+function searchUsers(input){
+  var cols;
+  $.post("/search/users", {queryString: "" + input + ""}, function(data) {
+
+    if (data===false){
+
+         cols = "";
+         cols += "<tr>";
+        cols += '<td colspan="8" style="text-align:center">Nada encontrado</td></tr>';
+    }
+
+    jQuery.each(data, (key, value) => {
+      console.log(value);
+  
+               /*LOAD TABLE */
+                    cols += "<tr>";
+                    if (value.image===null){
+                      cols += '<td><img class="circular" src="/images/default_user.jpeg"/></td>';
+                    } else {
+                      cols += '<td><img class="circular" src="'+ value.image+ '"/></td>';
+                    }
+
+                    cols += '<td>' + value.name + '</td>';
+                    cols += '<td>' + value.email + '</td>';
+                    cols += '<td>' + value.birthday + '</td>';
+                    cols += '<td>' + value.blocked + '</td>';
+                    cols += '<td>' + value.created_at + '</td>';
+                    cols += '<td> <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>';
+                    cols += '<i style="margin-left:3px"></i><span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left: 20px"></span></td>';
+                    cols += '</tr>';        
+    }); 
+    $("#tablerowusers").html(cols);
+  });
+  
+
+               
+
+}

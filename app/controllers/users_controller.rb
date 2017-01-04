@@ -46,6 +46,13 @@ end
     end
   end
 
+   def search
+    @users_suggestions = SearchTable.searchUsers(queryString: params[:queryString].strip.downcase)
+
+    render json: @users_suggestions
+    
+  end
+
   def set_user
       @users = User.find(params[:id])
     #  @users.photo = params[:file]

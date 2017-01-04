@@ -10,38 +10,33 @@
          <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                    <input class="form-control" id="inputSuccess5" onkeyup="searchUsers(this.value);" class="form-control" placeholder="Procurar">
                   </div>
                 </div>
               </div>
             </div>
             <thead>
                <tr>
-<<<<<<< HEAD
-                  <th>-</th>
-=======
+
                   <th>Avatar</th>
->>>>>>> 08be53cad5951f40b0ff13e718fd78249834315b
                   <th>Nome</th>
                   <th>Email</th>
                   <th>Data de nascimento</th>
-                  <th>Contato</th>
+                  <!--<th>Contato</th>-->
                   <th>Status</th>
                   <th>Cadastrado em</th>
                   <th>Configurações</th>
                </tr>
             </thead>
-            <tbody>
+            <tbody id="tablerowusers">
                <% @users.each do |users| %>
                <tr>
-                  <td><%= image_tag users.image, class:"circular"%> </td> 
+
+                  <td><%= image_tag (users.image.nil? ? '/images/default_user.jpeg' : users.image), class:"circular"%> </td> 
                   <td><%= users.name%></td>
                   <td><%= users.email%></td>
-                  <td><%= users.birthday.strftime("%d/%m/%Y")%></td>
-                  <td><%#= users.phone_number%></td>
+                  <td><%= users.birthday.nil? ? '' : users.birthday.strftime("%d/%m/%Y")%></td>
+                  <!--<td><%#= users.phone_number%></td>-->
                   <td><%= users.blocked ? 'Inativo' : 'Ativo' %></td>
                   <td><%= users.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
                   <td colspan="3"><%= link_to  edit_user_path(users) do %>
@@ -62,31 +57,3 @@
 </div>
 
 <%= will_paginate @users %>
-<<<<<<< HEAD
-=======
- <!--<script>
- function myFunction() {
-        // Declare variables 
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("mytable");
-        tr = table.getElementsByTagName("tr");
-        //search users table
-        for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[1];
-          if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-              $("#error").hide()
-            } else {
-              tr[i].style.display = "none";
-
-              
-            }
-          } else {
-            $("#error").show()
-            }
-        }
-      }</script>-->
->>>>>>> 08be53cad5951f40b0ff13e718fd78249834315b
