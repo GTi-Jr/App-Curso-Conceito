@@ -239,11 +239,3 @@ if (typeof NProgress != 'undefined') {
         NProgress.done();
     });
 }
-/**
- * Resize function without multiple trigger
- * 
- * Usage:
- * $(window).smartresize(function(){  
- *     // code here
- * });
- */
