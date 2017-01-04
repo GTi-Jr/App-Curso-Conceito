@@ -10,16 +10,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'api/users/omniauth_callbacks'
   }
 
-  authenticated :user do
-    resources :users
-    root 'api_dashboard#index'
-
-  end
-
-  unauthenticated :user do
-    root 'api_dashboard#index'
-  end
-
 
 
 
