@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  
-
- 
-  get 'categories/index'
 
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
@@ -24,6 +20,7 @@ Rails.application.routes.draw do
   authenticated :admin do
     resources :users
     resources :categories
+    resources :sub_categories
 
   end
 
