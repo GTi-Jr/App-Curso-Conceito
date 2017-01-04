@@ -21,7 +21,7 @@
             </div>
             <thead>
                <tr>
-                  <th>-</th>-
+                  <th>-</th>
                   <th>Nome</th>
                   <th>Email</th>
                   <th>Data de nascimento</th>
@@ -48,7 +48,7 @@
                   </td>
                </tr>
                <%end%>
-               <!--<td colspan="7" id="error" hidden="" >Nenhum cadastro encontrado</td>-->
+               
             </tbody>
          </table>
 
@@ -57,28 +57,3 @@
 </div>
 
 <%= will_paginate @users %>
- <!--<script>
- function myFunction() {
-        // Declare variables 
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("mytable");
-        tr = table.getElementsByTagName("tr");
-        //search users table
-        for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[1];
-          if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-              $("#error").hide()
-            } else {
-              tr[i].style.display = "none";
-
-              
-            }
-          } else {
-            $("#error").show()
-            }
-        }
-      }</script>-->

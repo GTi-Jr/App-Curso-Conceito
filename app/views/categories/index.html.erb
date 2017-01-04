@@ -10,10 +10,7 @@
          <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                    <input type="text" id="myInput" onkeyup="searchCategory(this.value);" class="form-control" placeholder="Search for...">
                   </div>
                 </div>
               </div>
@@ -22,18 +19,18 @@
                <tr>
                   <th>Nome</th>
                   <th>Criado em</th>
-                  <th> Settings </th>
+                  <th>Settings</th>
                </tr>
             </thead>
-            <tbody>
+            <tbody id="tablerowcategory">
                <% @categories.each do |categories| %>
-               <tr> 
+               <tr id=""> 
                   <td><%= categories.name%></td>
                   <td><%= categories.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
                   <td colspan="3"><%= link_to  edit_category_path(categories) do %>
                         <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>
                   <% end %> <i style="margin-left:3px"></i>
-                  <%= link_to categories, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <%= link_to categories, method: :delete, data: { confirm: 'Você tem certeza?' } do %>
                         <span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left: 20px"></span>
                   <% end %>      
                   </td>

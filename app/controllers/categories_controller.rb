@@ -12,18 +12,18 @@ class CategoriesController < BaseController
   def create
 
     @categories = Category.new(category_params)
-    @categories.name = @categories.name.capitalize!
+    @categories.name = @categories.name.mb_chars.upcase
     respond_to do |format|
-    if @categories.name = !Category.name.empty?
+    #3if @categories.name = !Category.name.empty?
       if @categories.save
         format.html { redirect_to categories_path, notice1: 'Categoria foi criado com sucesso.' }
       else
         format.html { render :new }
         #format.json { render json: @categories.errors, status: :unprocessable_entity }
       end
-    else
+    #else
       format.html { render :new }
-	   end
+	   #end
     end
   end
 
@@ -57,6 +57,13 @@ class CategoriesController < BaseController
   
   def category_params
       params.require(:category).permit(:name)
+  end
+
+
+  def search
+    @categories_suggestions = SearchTable.searchcategory(queryString: params[:queryString].strip.upcase)
+
+    render json: @categories_suggestions 
   end
 
 

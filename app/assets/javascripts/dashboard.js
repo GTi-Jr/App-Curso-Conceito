@@ -13,10 +13,7 @@
 //= require Flot/jquery.flot.stack.js
 //= require Flot/jquery.flot.resize.js
 
-//= require Flot/jquery.flot.orderBars.js
-//= require Flot/date.js
-//= require Flot/jquery.flot.spline.js
-//= require Flot/curvedLines.js
+
 
 //= require moment/moment.min.js
 //= require datepicker/daterangepicker.js
@@ -29,134 +26,71 @@
 //= require js/layouts/top
 //= require js/master
 
-//= require data-table/jquery.dataTables.min.js
-//= require data-table/dataTables.bootstrap.min.js
-//= require data-table/buttons.bootstrap.min.js
-//= require data-table/dataTables.buttons.min.js
-//= require data-table/buttons.flash.min.js
-//= require data-table/buttons.html5.min.js
-//= require data-table/buttons.print.min.js
-//= require data-table/dataTables.fixedHeader.min.js
-//= require data-table/dataTables.responsive.min.js
-//= require data-table/responsive.bootstrap.js
-//= require data-table/jszip.min.js
-//= require data-table/pdfmake.min.js
-//= require data-table/vfs_fonts.js
+
 
 //= require_tree .
 
-      function myFunction() {
-        // Declare variables 
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("mytable");
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[0];
-          if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-            } else {
-              tr[i].style.display = "none";
-            }
-          } 
-        }
-      }
  
- 
- /*$(document).ready(function() {
-        var handleDataTableButtons = function() {
-          if ($("#datatable-buttons").length) {
-            $("#datatable-buttons").DataTable({
-             
-           "ordering": false
-
-        
-            
-              "oLanguage": {
-                    "sEmptyTable": "Nenhum registro encontrado",
-                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ".",
-                    "sLengthMenu": "_MENU_ resultados por página",
-                    "sLoadingRecords": "Carregando...",
-                    "sProcessing": "Processando...",
-                    "sZeroRecords": "Nenhum registro encontrado",
-                    "sSearch": "Pesquisar",
-                    "oPaginate": {
-                        "sNext": "Próximo",
-                        "sPrevious": "Anterior",
-                        "sFirst": "Primeiro",
-                                  "sLast": "Último"
-                  },
-                  "oAria": {
-                      "sSortAscending": ": Ordenar colunas de forma ascendente",
-                      "sSortDescending": ": Ordenar colunas de forma descendente"
-                  }
-                    },
 
 
-              dom: "Bfrti",
-              buttons: [
-                {
-                  extend: "copy",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "csv",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "excel",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "pdfHtml5",
-                  className: "btn-sm"
-                },
-                {
-                  extend: "print",
-                  className: "btn-sm"
-                },
-              ],
-              responsive: true
-            });
-          }
-        };
+function searchCategory(input){
+  var cols;
+  $.post("/search/categories", {queryString: "" + input + ""}, function(data) {
 
-        TableManageButtons = function() {
-          "use strict";
-          return {
-            init: function() {
-              handleDataTableButtons();
-            }
-          };
-        }();
+    if (data===false){
 
-        $('#datatable').dataTable();
-        $('#datatable-keytable').DataTable({
-          keys: true
-        });
+      $("#tablerow").html("");
+         cols = "";
+         cols += "<tr>";
+        cols += '<td colspan="3" style="text-align:center">Nada encontrado</td></tr>';
+    }
 
-        $('#datatable-responsive').DataTable();
+    jQuery.each(data, (key, value) => {
 
-        $('#datatable-scroller').DataTable({
-          ajax: "js/datatables/json/scroller-demo.json",
-          deferRender: true,
-          scrollY: 380,
-          scrollCollapse: true,
-          scroller: true
-        });
 
-        var table = $('#datatable-fixed-header').DataTable({
-          fixedHeader: true
-        });
+               /*LOAD TABLE */
+                    cols += "<tr>";
+                    cols += '<td>' + value.name + '</td>';
+                    cols += '<td>' + value.created_at + '</td>';
+                    cols += '<td> <a href="/categories/'+value.id+'/edit"><span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span> </a>';
+                    cols += '<i style="margin-left:3px"></i> <a data-confirm="Você tem certeza?" rel="nofollow" data-method="delete" href="/categories/'+value.id+'"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left: 20px"></span></a></td>';
+                    cols += '</tr>';        
+    }); 
+    $("#tablerowcategory").html(cols);
+  });
+  
 
-        TableManageButtons.init();
-      }); 
+               
 
+}
+function searchSubCategory(input){
+  var cols;
+  $.post("/search/sub_categories", {queryString: "" + input + ""}, function(data) {
+
+    if (data===false){
+
+      $("#tablerow").html("");
+         cols = "";
+         cols += "<tr>";
+        cols += '<td colspan="4" style="text-align:center">Nada encontrado</td></tr>';
+    }
+
+    jQuery.each(data, (key, value) => {
+
+  
+               /*LOAD TABLE */
+                    cols += "<tr>";
+                    cols += '<td>' + value.name + '</td>';
+                    cols += '<td>' + value.category.name + '</td>';
+                    cols += '<td>' + value.created_at + '</td>';
+                    cols += '<td> <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>';
+                    cols += '<i style="margin-left:3px"></i><span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left: 20px"></span></td>';
+                    cols += '</tr>';        
+    }); 
+    $("#tablerowsub_category").html(cols);
+  });
+  
+
+               
+
+}

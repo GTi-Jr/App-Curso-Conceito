@@ -1,23 +1,19 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
    <div class="x_panel">
-    <div class="x_title">
+      <div class="x_title">
          <h2>Gerenciamento de Subcategorias</h2>
          <div class="clearfix"></div>
       </div>
       <div class="x_content">
          <%= will_paginate @sub_categories %>
          <table id="mytable", class="table table-striped table-bordered">
-            <div class="title_right">
+             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                    <input type="text" id="myInput" onkeyup="searchSubCategory(this.value);" class="form-control" placeholder="Search for...">
                   </div>
                 </div>
               </div>
-            </div>
             <thead>
                <tr>
                   <th>Nome</th>
@@ -26,7 +22,7 @@
                   <th> Settings </th>
                </tr>
             </thead>
-            <tbody>
+            <tbody id="tablerowsub_category">
                <% @sub_categories.each do |sub_categories| %>
                <tr>
                   <td><%= sub_categories.name%></td>
@@ -49,3 +45,28 @@
    <%= link_to 'Nova Subcategoria', new_sub_category_path,  class:"btn btn-success" %>
 </div>
 <%= will_paginate @sub_categories %>
+
+<%= javascript_include_tag 'dashboard' %>
+    <% unless alert.nil? %>
+    <script>
+      $(document).ready(function() {
+      noty({text: ' <%= alert %>', layout: 'bottom', type: 'warning', timeout: 4000});
+      });
+    </script>
+    <% end %>
+    <% unless notice.nil? %>
+    <script>
+      $(document).ready(function() {
+        noty({text: ' <%= notice %>', layout: 'bottom', type: 'success', timeout: 4000});
+      });
+    </script>
+    <% end %>
+    <% if defined?(@sub_categories.errors) %>
+    <% if @sub_categories.errors.any? %>
+    <script>
+    $(document).ready(function() {
+      noty({text: ' <%= pluralize(@sub_categories.errors.count, "error") %> encontrado: </br><ul><% @sub_categories.errors.full_messages.each do   |message| %><li><%= message %></li><% end %></ul>', layout: 'bottom', type: 'warning', timeout: 4000});
+    });
+    </script>
+<% end
+  end %>

@@ -12,10 +12,11 @@ class SubCategoriesController < BaseController
   def create
 
     @sub_categories = SubCategory.new(sub_category_params)
+    @sub_categories.name = @sub_categories.name.mb_chars.upcase
     respond_to do |format|  
         #if @sub_categories.unique
       if @sub_categories.save
-        format.html { redirect_to sub_categories_path, notice1: 'Subcategoria foi criado com sucesso.' }
+         format.html { redirect_to sub_categories_path, notice1: 'Subcategoria foi criado com sucesso.' }
       else
         format.html { render :new }
         #format.html { redirect_to new_sub_category, notice1: 'Subcategoria já existe.' }
@@ -49,6 +50,13 @@ end
       format.xml  { head :ok }
       end
     end
+  end
+   
+  def search
+    @sub_categories_suggestions = SearchTable.searchsub_category(queryString: params[:queryString].strip.upcase)
+s
+    render json: @sub_categories_suggestions, :include => {:category => {:only => :name}}
+    
   end
 
   def set_sub_category
