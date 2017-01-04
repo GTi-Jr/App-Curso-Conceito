@@ -14,8 +14,6 @@ class User < ApplicationRecord
       user.image = auth.info.image
       user.birthday = Date.strptime(auth.extra.raw_info.birthday, "%m/%d/%Y")
 
-      
-  
       user.oauth_token = auth.credentials.token #aqui você pode receber o token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!

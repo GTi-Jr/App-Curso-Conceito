@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'api/users/omniauth_callbacks'
   }
 
+  authenticated :user do
+    get 'loginapi' => 'api_dashboard#index'
+  end
+
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     confirmations: 'admins/confirmations',
@@ -30,6 +34,7 @@ Rails.application.routes.draw do
     resources :users
     resources :categories
     resources :sub_categories
+    resources :contents
   end
 
   unauthenticated :admin do

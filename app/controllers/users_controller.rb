@@ -48,10 +48,10 @@ end
 
   def set_user
       @users = User.find(params[:id])
-      @users.photo = params[:file]
+    #  @users.photo = params[:file]
   end
   
   def user_params
-      params.require(:user).permit(:name, :email, :password, :birthday, :phone_number, :photo)
+      params.require(:user).permit(:name, :email, :birthday, :phone_number)
   end
 end

@@ -1,4 +1,3 @@
-
 <div class="col-md-12 col-sm-12 col-xs-12">
    <div class="x_panel">
       <div class="x_title">
@@ -21,13 +20,14 @@
             </div>
             <thead>
                <tr>
-                  <th>-</th>-
+                  <th>Avatar</th>
                   <th>Nome</th>
                   <th>Email</th>
                   <th>Data de nascimento</th>
                   <th>Contato</th>
+                  <th>Status</th>
                   <th>Cadastrado em</th>
-                  <th>Settings</th>
+                  <th>Configurações</th>
                </tr>
             </thead>
             <tbody>
@@ -36,8 +36,9 @@
                   <td><%= image_tag users.image, class:"circular"%> </td> 
                   <td><%= users.name%></td>
                   <td><%= users.email%></td>
-                  <td><%#= users.birthday.strftime("%d/%m/%Y")%></td>
+                  <td><%= users.birthday.strftime("%d/%m/%Y")%></td>
                   <td><%#= users.phone_number%></td>
+                  <td><%= users.blocked ? 'Inativo' : 'Ativo' %></td>
                   <td><%= users.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
                   <td colspan="3"><%= link_to  edit_user_path(users) do %>
                         <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>
