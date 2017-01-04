@@ -2,6 +2,27 @@ Rails.application.routes.draw do
   
 
  
+  devise_for :users,  controllers: {
+    sessions: 'api/users/sessions',
+    confirmations: 'api/users/confirmations',
+    passwords: 'api/users/passwords',
+    registrations:'api/users/registrations',
+    omniauth_callbacks: 'api/users/omniauth_callbacks'
+  }
+
+  authenticated :user do
+    resources :users
+    root 'api_dashboard#index'
+
+  end
+
+  unauthenticated :user do
+    root 'api_dashboard#index'
+  end
+
+
+
+
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     confirmations: 'admins/confirmations',
@@ -21,11 +42,12 @@ Rails.application.routes.draw do
 
   authenticated :admin do
     resources :users
-
   end
 
   unauthenticated :admin do
   end
-  
+
   root 'dashboard#index'
+  
+ 
 end

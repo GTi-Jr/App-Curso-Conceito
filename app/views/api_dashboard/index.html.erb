@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <%= javascript_include_tag 'api.js' %>
+  <body>
+
+<!-- Aqui temos um uso das informações do usuário -->
+    <div id="user-widget">
+  <% if current_user %>
+    Welcome <strong><%= current_user.name %></strong>!
+    <%= link_to destroy_user_session_path,title: "Sair", 'data-toggle': "tooltip", method: :delete do %>
+    SAIR
+    <%end%>
+  <% else %>
+    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path , id: "sign_in" %>
+  <% end %>
+  </div>
+
+  <%= current_user.authentication_token %>
+
+  </body>
+</html>

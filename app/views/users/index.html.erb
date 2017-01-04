@@ -21,11 +21,11 @@
             <tbody>
                <% @users.each do |users| %>
                <tr>
-                  <td><%= image_tag users.photo, class:"circular"%> </td> 
+                  <td><%= image_tag users.image, class:"circular"%> </td> 
                   <td><%= users.name%></td>
                   <td><%= users.email%></td>
-                  <td><%= users.birthday.strftime("%d/%m/%Y")%></td>
-                  <td><%= users.phone_number%></td>
+                  <td><%#= users.birthday.strftime("%d/%m/%Y")%></td>
+                  <td><%#= users.phone_number%></td>
                   <td><%= users.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
                   <td colspan="3"><%= link_to  edit_user_path(users) do %>
                         <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>
