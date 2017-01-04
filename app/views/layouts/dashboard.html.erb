@@ -9,6 +9,7 @@
 
     <title>Curso Conceito </title>
     <%= stylesheet_link_tag  'dashboard', media: 'all'%>
+    <%= javascript_include_tag 'dashboardtop' %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -62,7 +63,7 @@
                       <li><%=link_to "Gerenciar Categorias", categories_path %></li>
                       <li><%= link_to "Gerenciar Subcategorias", sub_categories_path %></li>
                       <li><a href="javascript:void(0)">Gerenciar Displinas</a></li>
-                      <li><%= link_to "Gerenciar Disciplinas", contents_path %></li>
+                      <li><%= link_to "Gerenciar Conteúdo", contents_path %></li>
                     </ul>
                   </li>
                 </ul>
