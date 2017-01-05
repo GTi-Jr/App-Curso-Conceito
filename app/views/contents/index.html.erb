@@ -21,21 +21,21 @@
             <thead>
                <tr>
                   <th>Nome</th>
-                  <th>Categoria</th>
+                  <th>Sub Categoria</th>
                   <th>Criado em</th>
                   <th> Settings </th>
                </tr>
             </thead>
             <tbody>
-               <% @contents.each do |sub_categories| %>
+               <% @contents.each do |contents| %>
                <tr>
-                  <td><%= sub_categories.name%></td>
-                  <td><%= sub_categories.category.name%></td>
-                  <td><%= sub_categories.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
-                  <td colspan="3"><%= link_to  edit_sub_category_path(sub_categories) do %>
+                  <td><%= contents.title%></td>
+                  <td><%= contents.subcategory.name %></td>
+                  <td><%= contents.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
+                  <td colspan="3"><%= link_to  edit_subcategory_path(contents) do %>
                      <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>
                      <% end %> <i style="margin-left:3px"></i>
-                     <%= link_to sub_categories, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                     <%= link_to contents, method: :delete, data: { confirm: 'Are you sure?' } do %>
                      <span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left: 20px"></span>
                      <% end %>      
                   </td>

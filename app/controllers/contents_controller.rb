@@ -6,18 +6,18 @@ class ContentsController < BaseController
   end
   
   def new
-    @content = Content.new
+    @contents = Content.new
   end 
 
 
   def create
-    @content = Content.new(content_params)
+    @contents = Content.new(content_params)
     respond_to do |format|  
-      if @content.save
-        format.html { redirect_to content_path, notice1: 'Conteudo foi criado com sucesso.' }
+      if @contents.save
+        format.html { redirect_to contents_path, notice: 'Conteudo foi criado com sucesso.' }
       else
         format.html { render :new }
-        format.json { render json: @content.errors, status: :unprocessable_entity }
+        #format.json { render json: @content.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -49,12 +49,12 @@ class ContentsController < BaseController
   private 
 
   def set_content
-    @content = Content.find(params[:id])
+    @contents = Content.find(params[:id])
    # @content.file = params[:file]
   end
   
   def content_params
-    params.require(:content).permit(:name)
+    params.require(:content).permit(:title, :subcategory_id)
   end
 
 end

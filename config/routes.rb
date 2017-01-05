@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'loginapi' => 'api_dashboard#index'
   end
 
+
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     confirmations: 'admins/confirmations',
@@ -33,8 +34,15 @@ Rails.application.routes.draw do
   authenticated :admin do
     resources :users
     resources :categories
-    resources :sub_categories
+    resources :subcategories
+
+
+    post 'search/categories' => 'categories#search'
+    post 'search/sub_categories' => 'sub_categories#search'
+
+
     resources :contents
+
   end
 
   unauthenticated :admin do
