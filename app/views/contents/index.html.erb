@@ -8,12 +8,9 @@
          <%= will_paginate @contents %>
          <table id="mytable", class="table table-striped table-bordered">
             <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class=" form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                    <input type="text" id="myInput" onkeyup="searchContents(this.value);" class="form-control" placeholder="Nome ou Subcategoria">
                   </div>
                 </div>
               </div>
@@ -22,17 +19,19 @@
                <tr>
                   <th>Nome</th>
                   <th>Sub Categoria</th>
+                  <th>Arquivo</th>
                   <th>Criado em</th>
                   <th> Settings </th>
                </tr>
             </thead>
-            <tbody>
+            <tbody id="contents_search">
                <% @contents.each do |contents| %>
                <tr>
                   <td><%= contents.title%></td>
                   <td><%= contents.subcategory.name %></td>
+                  <td><a href="javascript:void(0)" onclick="popup('<%= contents.file %>','<%= contents.title%>')">Abrir Arquivo</a></td>
                   <td><%= contents.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
-                  <td colspan="3"><%= link_to  edit_subcategory_path(contents) do %>
+                  <td colspan="3"><%= link_to  edit_content_path(contents) do %>
                      <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>
                      <% end %> <i style="margin-left:3px"></i>
                      <%= link_to contents, method: :delete, data: { confirm: 'Are you sure?' } do %>

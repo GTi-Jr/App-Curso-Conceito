@@ -7,6 +7,7 @@ class ContentsController < BaseController
   
   def new
     @contents = Content.new
+    !params[:file].nil? ? @content.file = params[:file] : ''
   end 
 
 
@@ -27,8 +28,8 @@ class ContentsController < BaseController
 
   def update 
     respond_to do |format|
-      if @content.update(content_params)
-        format.html { redirect_to  content_path , notice: 'Conteudo foi editado com sucesso.' }
+      if @contents.update(content_params)
+        format.html { redirect_to  contents_path , notice: 'Conteudo foi editado com sucesso.' }
       else
          format.html { render :edit }
          format.json { render json: @content.errors, status: :unprocessable_entity }
@@ -40,21 +41,28 @@ class ContentsController < BaseController
     @content = Content.find(params[:id])
     respond_to do |format|
       if @content.destroy
-      format.html { redirect_to content_path, notice: 'Conteudo foi apagada com sucesso.' }
-      format.xml  { head :ok }
+        @content.remove_file! #APAGAR O ARQUIVO. OBS: NÃO APAGA A PASTA
+        format.html { redirect_to contents_path, notice: 'Conteudo foi apagada com sucesso.' }
+        format.xml  { head :ok }
       end
     end
+  end
+
+  def search
+    @search_contents = SearchTable.search_contents(queryString: params[:queryString].strip.downcase)
+    render json: @search_contents, :include => {:subcategory => {:only => :name}}
   end
 
   private 
 
   def set_content
     @contents = Content.find(params[:id])
-   # @content.file = params[:file]
   end
   
   def content_params
-    params.require(:content).permit(:title, :subcategory_id)
+    params.require(:content).permit(:title, :subcategory_id, :file)
   end
+
+
 
 end

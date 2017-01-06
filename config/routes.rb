@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
     post 'search/categories' => 'categories#search'
     post 'search/sub_categories' => 'sub_categories#search'
+    post 'search/contents' => 'contents#search'
 
 
     resources :contents
