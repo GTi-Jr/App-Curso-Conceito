@@ -8,12 +8,9 @@
          <%= will_paginate @contents %>
          <table id="mytable", class="table table-striped table-bordered">
             <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class=" form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                    <input type="text" id="myInput" onkeyup="searchContents(this.value);" class="form-control" placeholder="Nome ou Subcategoria">
                   </div>
                 </div>
               </div>
@@ -21,21 +18,23 @@
             <thead>
                <tr>
                   <th>Nome</th>
-                  <th>Categoria</th>
+                  <th>Sub Categoria</th>
+                  <th>Arquivo</th>
                   <th>Criado em</th>
                   <th> Settings </th>
                </tr>
             </thead>
-            <tbody>
-               <% @contents.each do |sub_categories| %>
+            <tbody id="contents_search">
+               <% @contents.each do |contents| %>
                <tr>
-                  <td><%= sub_categories.name%></td>
-                  <td><%= sub_categories.category.name%></td>
-                  <td><%= sub_categories.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
-                  <td colspan="3"><%= link_to  edit_sub_category_path(sub_categories) do %>
+                  <td><%= contents.title%></td>
+                  <td><%= contents.subcategory.name %></td>
+                  <td><a href="javascript:void(0)" onclick="popup('<%= contents.file %>','<%= contents.title%>')">Abrir Arquivo</a></td>
+                  <td><%= contents.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
+                  <td colspan="3"><%= link_to  edit_content_path(contents) do %>
                      <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>
                      <% end %> <i style="margin-left:3px"></i>
-                     <%= link_to sub_categories, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                     <%= link_to contents, method: :delete, data: { confirm: 'Are you sure?' } do %>
                      <span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left: 20px"></span>
                      <% end %>      
                   </td>

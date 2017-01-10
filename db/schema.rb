@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104140153) do
+ActiveRecord::Schema.define(version: 20170109221809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,16 +45,20 @@ ActiveRecord::Schema.define(version: 20170104140153) do
     t.integer  "subcategory_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["subcategory_id"], name: "index_contents_on_subcategory_id", using: :btree
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.string   "teacher"
     t.datetime "date"
     t.time     "lesson_hour_start"
     t.time     "lesson_hour_end"
     t.integer  "limit"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "subcategory_id"
+    t.integer  "teacher_id"
+    t.index ["subcategory_id"], name: "index_lessons_on_subcategory_id", using: :btree
+    t.index ["teacher_id"], name: "index_lessons_on_teacher_id", using: :btree
   end
 
   create_table "search_tables", force: :cascade do |t|
@@ -62,11 +66,12 @@ ActiveRecord::Schema.define(version: 20170104140153) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sub_categories", force: :cascade do |t|
+  create_table "subcategories", force: :cascade do |t|
     t.string   "name"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_subcategories_on_category_id", using: :btree
   end
 
   create_table "subscribeds", force: :cascade do |t|
@@ -75,6 +80,14 @@ ActiveRecord::Schema.define(version: 20170104140153) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_teachers_on_category_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -103,4 +116,9 @@ ActiveRecord::Schema.define(version: 20170104140153) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "contents", "subcategories"
+  add_foreign_key "lessons", "subcategories"
+  add_foreign_key "lessons", "teachers"
+  add_foreign_key "subcategories", "categories"
+  add_foreign_key "teachers", "categories"
 end

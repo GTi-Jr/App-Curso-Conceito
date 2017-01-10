@@ -53,16 +53,16 @@
                   </li>
                   <li><a><i class="fa  fa-mortar-board"></i> Professores <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="javascript:void(0)">Inserir Professores</a></li>
-                      <li><a href="javascript:void(0)">Editar Professores</a></li>
-                      <li><a href="javascript:void(0)">Gerenciar Aulas</a></li>
+                      <li><%= link_to "Gerenciar Professores", teachers_path %></li>
+                      <li><%= link_to "Gerenciar Aulas", lessons_path %></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Matérias <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><%=link_to "Gerenciar Categorias", categories_path %></li>
-                      <li><%= link_to "Gerenciar Subcategorias", sub_categories_path %></li>
+                      <li><%= link_to "Gerenciar Subcategorias", subcategories_path %></li>
                       <li><%= link_to "Gerenciar Conteúdo", contents_path %></li>
+                      
                     </ul>
                   </li>
                 </ul>
@@ -156,28 +156,5 @@
       </div>
     </div>
     <%= javascript_include_tag 'dashboard' %>
-    <% unless alert.nil? %>
-    <script>
-      $(document).ready(function() {
-      noty({text: ' <%= alert %>', layout: 'bottom', type: 'warning', timeout: 4000});
-      });
-    </script>
-    <% end %>
-    <% unless notice.nil? %>
-    <script>
-      $(document).ready(function() {
-        noty({text: ' <%= notice %>', layout: 'bottom', type: 'success', timeout: 4000});
-      });
-    </script>
-    <% end %>
-    <% if defined?(@users.errors) %>
-    <% if @users.errors.any? %>
-    <script>
-    $(document).ready(function() {
-      noty({text: ' <%= pluralize(@users.errors.count, "error") %> encontrado: </br><ul><% @users.errors.full_messages.each do   |message| %><li><%= message %></li><% end %></ul>', layout: 'bottom', type: 'warning', timeout: 4000});
-    });
-    </script>
-<% end
-  end %>
   </body>
 </html>

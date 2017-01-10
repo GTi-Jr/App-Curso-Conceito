@@ -1,7 +1,7 @@
- <% if @content.errors.any? %>
+ <% if @contents.errors.any? %>
   <script>
    $(document).ready(function() {
-    noty({text: '<%= pluralize(@content.errors.count, "erros") %> encontrados: </br><ul><% @content.errors.full_messages.each do |message| %><li><%= message %></li><% end %></ul>', layout: 'bottom', type: 'warning', timeout: 4000});
+    noty({text: ' <%= pluralize(@contents.errors.count, "erros") %> encontrados: </br><ul><% @contents.errors.full_messages.each do |message| %><li><%= message %></li><% end %></ul>', layout: 'bottom', type: 'warning', timeout: 4000});
   });
   </script>
 <% end %>
@@ -10,13 +10,13 @@
    <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_content">
          <br />
-         <%= form_for @content, :html => { class:"form-horizontal form-label-left", id:"demo-form2"  } do |f| %>
+         <%= form_for @contents, :html => { class:"form-horizontal form-label-left", id:"demo-form2", multipart: true } do |f| %>
          <div class="form-group">
             <%= f.label :name, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
             <span class="required">Titulo *</span>
             <% end %> 
             <div class="col-md-6 col-sm-6 col-xs-12">
-               <%= f.text_field :title, class:"form-control col-md-7 col-xs-12", type:"text", required:"required"%>
+               <%= f.text_field :title, class:"form-control col-md-7 col-xs-12", type:"text" %>
             </div>
          </div>
          <div class="form-group">
@@ -24,7 +24,7 @@
             <span class="required">Sub Categoria *</span>
             <% end %> 
             <div class="col-md-6 col-sm-6 col-xs-12">
-               <%= f.select :subcategory_id, SubCategory.all.collect { |c| [ c.name, c.id ] }, { include_blank: true } , { class: "form-control" }%>
+               <%= f.collection_select :subcategory_id, Subcategory.all, :id, :name, { include_blank: true } , { class: "form-control" }%>
             </div>
          </div>
          <div class="form-group">
@@ -32,14 +32,14 @@
             <span class="required">Arquivo *</span>
             <% end %> 
             <div class="col-md-6 col-sm-6 col-xs-12">
-               <%= f.file_field :file, multiple: true, class:"date-picker form-control col-md-7 col-xs-12" %>
+               <%= f.file_field :file, multiple: false, class:"date-picker form-control col-md-7 col-xs-12" %>
             </div>
          </div>
          <div class="ln_solid"></div>
          <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                <%= f.submit "Cadastrar", type:"submit", class:"btn btn-success" %>
-               <%= link_to "Voltar", sub_categories_path, class:"btn btn-primary"%>
+               <%= link_to "Voltar", contents_path, class:"btn btn-primary"%>
             </div>
          </div>
       </div>

@@ -5,12 +5,12 @@
          <div class="clearfix"></div>
       </div>
       <div class="x_content">
-         <%= will_paginate @sub_categories %>
+         <%= will_paginate @subcategories %>
          <table id="mytable", class="table table-striped table-bordered">
              <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input class="form-control" id="inputSuccess5" onkeyup="searchSubCategory(this.value);" class="form-control" placeholder="Procurar">
+                    <input class="form-control" id="inputSuccess5" onkeyup="searchsubcategory(this.value);" placeholder="Procurar">
                   </div>
                 </div>
               </div>
@@ -22,26 +22,25 @@
                   <th>Configurações</th>
                </tr>
             </thead>
-            <tbody id="tablerowsub_category">
-               <% @sub_categories.each do |sub_categories| %>
+            <tbody id="tablerowsubcategory">
+               <% @subcategories.each do |subcategories| %>
                <tr>
-                  <td><%= sub_categories.name%></td>
-                  <td><%= sub_categories.category.name%></td>
-                  <td><%= sub_categories.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
-                  <td colspan="3"><%= link_to  edit_sub_category_path(sub_categories) do %>
+                  <td><%= subcategories.name%></td>
+                  <td><%= subcategories.category.name%></td>
+                  <td><%= subcategories.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
+                  <td colspan="3"><%= link_to  edit_subcategory_path(subcategories) do %>
                      <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>
                      <% end %> <i style="margin-left:3px"></i>
-                     <%= link_to sub_categories, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                     <%= link_to subcategories, method: :delete, data: { confirm: 'Are you sure?' } do %>
                      <span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left: 20px"></span>
                      <% end %>      
                   </td>
                </tr>
                <%end%>
-               <!--<td colspan="7" id="error" hidden="" >Nenhum cadastro encontrado</td>-->
             </tbody>
          </table>
       </div>
    </div>
-   <%= link_to 'Nova Subcategoria', new_sub_category_path,  class:"btn btn-success" %>
+   <%= link_to 'Nova Subcategoria', new_subcategory_path,  class:"btn btn-success" %>
 </div>
-<%= will_paginate @sub_categories %>
+<%= will_paginate @subcategories %>

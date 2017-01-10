@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
- 
+
   devise_for :users,  controllers: {
     sessions: 'api/users/sessions',
     confirmations: 'api/users/confirmations',
@@ -34,11 +34,20 @@ Rails.application.routes.draw do
   authenticated :admin do
     resources :users
     resources :categories
-    resources :sub_categories
+    resources :subcategories
+    resources :teachers
+    resources :lessons
+
 
     post 'search/categories' => 'categories#search'
-    post 'search/sub_categories' => 'sub_categories#search'
+    post 'search/subcategories' => 'subcategories#search'
+
     post 'search/users' => 'users#search'
+
+    post 'search/contents' => 'contents#search'
+    post 'search/teachers' => 'teachers#search'
+    post 'search/lessons' => 'lessons#search'
+
 
     resources :contents
 
