@@ -14,9 +14,10 @@
                   </div>
                 </div>
               </div>
-            <thead id="tablerowlessons">
+            <thead>
                <tr>
-                  <th>Aula de</th>
+                  <!--<th>Matéria</th>-->
+                  <th>Assunto</th>
                   <th>Professor</th>
                   <th>Data</th>
                   <th>Horário início-término</th>
@@ -25,9 +26,10 @@
                   <th>Configurações</th>
                </tr>
             </thead>
-            <tbody>
+            <tbody id="tablerowlessons">
                <% @lessons.each do |lessons| %>
                <tr>
+                  <!--<td><%= lessons.subcategory.category.name%></td>--> 
                   <td><%= lessons.subcategory.name%></td>
                   <td><%= lessons.teacher.name%></td>
                   <td><%= lessons.date.strftime("%d/%m/%Y") %></td>

@@ -53,7 +53,8 @@ class LessonsController < BaseController
   end
   def search
     @lessons_suggestions = SearchTable.searchlesson(queryString: params[:queryString].strip.downcase)
-
+    #NÃO SEI A SINTAX PARA ADICIONAR CATEGORY AO INCLUDE
+    #se n der certo, vou adicionar category_id ao model msm. :) rayane
     render json: @lessons_suggestions, :include => {:subcategory => {:only => :name}, :teacher => {:only => :name}}
   end
   def lesson_params

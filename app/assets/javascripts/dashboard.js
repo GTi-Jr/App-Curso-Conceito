@@ -114,11 +114,12 @@ function searchlesson(input) {
         if (data === false) {
             cols = "";
             cols += "<tr>";
-            cols += '<td colspan="7" style="text-align:center">Nada encontrado.</td></tr>';
+            cols += '<td colspan="8" style="text-align:center">Nada encontrado.</td></tr>';
         }
         jQuery.each(data, (key, value) => {
             /*LOAD TABLE */
             cols += "<tr>";
+            //cols += '<td>' + value.subcategory.category.name + '</td>';
             cols += '<td>' + value.subcategory.name + '</td>';
             cols += '<td>' + value.teacher.name + '</td>';
             cols += '<td>' + moment.parseZone(value.date).format('L'); + '</td>';
@@ -170,7 +171,7 @@ function searchUsers(input){
     }); 
     $("#tablerowusers").html(cols);
   });
-  }
+}
                
 
 
