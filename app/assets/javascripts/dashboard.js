@@ -223,5 +223,13 @@ $(document).ready(function() {
           searchlesson($('#inputsearch').val(),dataFULL);
          // console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
     });
+
+     $('input[id="lesson_date_t"]').daterangepicker({
+        locale: {
+            format: 'YYYY-MM-DD'
+        },
+        singleDatePicker: true,
+        showDropdowns: true
+    });
         
 });
