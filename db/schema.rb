@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109221809) do
+ActiveRecord::Schema.define(version: 20170111230258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20170109221809) do
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.datetime "date"
     t.time     "lesson_hour_start"
     t.time     "lesson_hour_end"
     t.integer  "limit"
@@ -57,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170109221809) do
     t.datetime "updated_at",        null: false
     t.integer  "subcategory_id"
     t.integer  "teacher_id"
+    t.date     "date_t"
     t.index ["subcategory_id"], name: "index_lessons_on_subcategory_id", using: :btree
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id", using: :btree
   end
@@ -76,10 +76,12 @@ ActiveRecord::Schema.define(version: 20170109221809) do
 
   create_table "subscribeds", force: :cascade do |t|
     t.boolean  "is_present"
-    t.integer  "lesson_id"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.index ["lesson_id"], name: "index_subscribeds_on_lesson_id", using: :btree
+    t.index ["user_id"], name: "index_subscribeds_on_user_id", using: :btree
   end
 
   create_table "teachers", force: :cascade do |t|

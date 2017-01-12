@@ -32,9 +32,15 @@ class SearchTable < ApplicationRecord
 	
 	end
 	def self.searchlesson(options = {})
-	  lesson_suggestions = Lesson.joins(:subcategory).where("lower(subcategories.name) LIKE ?", "#{options[:queryString]}%").limit(50)
+	  lesson_suggestions = Lesson.joins(:subcategory,:teacher).where("lower(subcategories.name) LIKE ? OR lower(teachers.name) LIKE ?", "#{options[:queryString]}%", "#{options[:queryString]}%")
 
-	  lesson_suggestions.any? ? lesson_suggestions : false
+	  if options[:date_range].present?
+        initial_date = Date.parse(options[:date_range].split('-')[0])
+        end_date     = Date.parse(options[:date_range].split('-')[1])
+        lesson_suggestions = Lesson.where(date_t: (initial_date..end_date))
+      end
+
+	  lesson_suggestions.any? ? lesson_suggestions.order('id DESC').limit(50) : false
 	
 	end
 end

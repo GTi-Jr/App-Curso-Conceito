@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   authenticated :user do
     get 'loginapi' => 'api_dashboard#index'
+    get 'subscribe/lesson/:lesson_id' => 'api/subscribe/subscribes#request_sub'
   end
 
 

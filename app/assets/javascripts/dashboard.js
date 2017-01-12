@@ -106,10 +106,12 @@ function searchTeachers(input) {
         $("#tablerowteachers").html(cols);
     });
 }
-function searchlesson(input) {
+var dataFULL;
+function searchlesson(input,datat) {
     var cols;
     $.post("/search/lessons", {
-        queryString: "" + input + ""
+        queryString: "" + input + "",
+        date_range: "" + datat + ""
     }, function(data) {
         if (data === false) {
             cols = "";
@@ -122,8 +124,8 @@ function searchlesson(input) {
             //cols += '<td>' + value.subcategory.category.name + '</td>';
             cols += '<td>' + value.subcategory.name + '</td>';
             cols += '<td>' + value.teacher.name + '</td>';
-            cols += '<td>' + moment.parseZone(value.date).format('L'); + '</td>';
-            cols += '<td>' + moment.parseZone(value.lesson_hour_start).format('HH:mm') + '-' + moment.parseZone(value.lesson_hour_end).format('HH:mm') + '</td>';
+            cols += '<td>' + moment.parseZone(value.date_t).format('DD/MM/YYYY') + '</td>';
+            cols += '<td>' + moment.parseZone(value.lesson_hour_start).format('HH:mm') + ' até ' + moment.parseZone(value.lesson_hour_end).format('HH:mm') + '</td>';
             cols += '<td>' + value.limit + '</td>';
             cols += '<td>' + moment.parseZone(value.created_at).format('DD/MM/YYYY HH:mm:ss'); + '</td>';
             cols += '<td> <a href="/lessons/' + value.id + '/edit"><span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span> </a>';
@@ -146,8 +148,7 @@ function searchUsers(input){
     }
 
     jQuery.each(data, (key, value) => {
-      console.log(value);
-  
+
                /*LOAD TABLE */
                     cols += "<tr>";
                     if (value.image===null){
@@ -184,3 +185,43 @@ function popup(mylink, windowname) {
     return false;
 
 }
+
+/* date */
+$(document).ready(function() {
+    var start = moment();
+    var end = moment();
+    function cb(start, end) {
+        $('#reportrange span').html(start.format('DD/MM/YYYY') + '-' + end.format('DD/MM/YYYY'));
+    }
+    $('#reportrange').daterangepicker({
+        locale: {
+            format: 'DD/MM/YYYY',
+            applyLabel: 'Pesquisar',
+            cancelLabel: 'Cancelar',
+            fromLabel: 'De',
+            toLabel: 'Para',
+            customRangeLabel: 'Personalizado',
+            daysOfWeek: ['Do', 'Se', 'Te', 'Qua', 'Qui', 'Sex', 'Sa'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'JUlho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        },
+        showDropdowns: true,
+        showWeekNumbers: true,
+        startDate: start,
+        endDate: end,
+        ranges: {
+            'Hoje': [moment(), moment()],
+            'Amanhã': [moment().add(1, 'days'), moment().add(1, 'days')],
+            'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Últimos 7 dias': [moment().subtract(6, 'days'), moment()],
+            'Este mês': [moment().startOf('month'), moment().endOf('month')],
+        }
+    }, cb);
+     cb(start, end);
+
+     $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+          dataFULL = picker.startDate.format('DD/MM/YYYY') +'-'+picker.endDate.format('DD/MM/YYYY')
+          searchlesson($('#inputsearch').val(),dataFULL);
+         // console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+    });
+        
+});

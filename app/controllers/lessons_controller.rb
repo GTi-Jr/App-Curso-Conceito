@@ -14,7 +14,7 @@ class LessonsController < BaseController
     @lessons = Lesson.new(lesson_params)
     respond_to do |format|
       if @lessons.save
-        format.html { redirect_to lessons_path, notice1: 'Aula foi cadastrada com sucesso.' }
+        format.html { redirect_to lessons_path, notice: 'Aula foi cadastrada com sucesso.' }
       else
         format.html { render :new }
         #format.json { render json: @categories.errors, status: :unprocessable_entity }
@@ -52,13 +52,13 @@ class LessonsController < BaseController
       @lessons = Lesson.find(params[:id])
   end
   def search
-    @lessons_suggestions = SearchTable.searchlesson(queryString: params[:queryString].strip.downcase)
+    @lessons_suggestions = SearchTable.searchlesson(queryString: params[:queryString].strip.downcase, date_range: params[:date_range])
     #NÃO SEI A SINTAX PARA ADICIONAR CATEGORY AO INCLUDE
     #se n der certo, vou adicionar category_id ao model msm. :) rayane
     render json: @lessons_suggestions, :include => {:subcategory => {:only => :name}, :teacher => {:only => :name}}
   end
   def lesson_params
-      params.require(:lesson).permit(:teacher_id, :date, :lesson_hour_start, :lesson_hour_end, :limit, :subcategory_id)
+      params.require(:lesson).permit(:teacher_id, :date_t, :lesson_hour_start, :lesson_hour_end, :limit, :subcategory_id)
   end
 
 end
