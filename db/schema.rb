@@ -78,6 +78,10 @@ ActiveRecord::Schema.define(version: 20170111230258) do
     t.boolean  "is_present"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.index ["lesson_id"], name: "index_subscribeds_on_lesson_id", using: :btree
+    t.index ["user_id"], name: "index_subscribeds_on_user_id", using: :btree
   end
 
   create_table "teachers", force: :cascade do |t|

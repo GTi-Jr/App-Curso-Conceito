@@ -9,6 +9,9 @@ class LessonsController < BaseController
     @lessons= Lesson.new
   end 
 
+  def show
+  end
+
   def create
 
     @lessons = Lesson.new(lesson_params)

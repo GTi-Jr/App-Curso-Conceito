@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+
+
   devise_for :users,  controllers: {
     sessions: 'api/users/sessions',
     confirmations: 'api/users/confirmations',
@@ -39,15 +41,14 @@ Rails.application.routes.draw do
     resources :teachers
     resources :lessons
 
-
     post 'search/categories' => 'categories#search'
     post 'search/subcategories' => 'subcategories#search'
-
     post 'search/users' => 'users#search'
-
     post 'search/contents' => 'contents#search'
     post 'search/teachers' => 'teachers#search'
     post 'search/lessons' => 'lessons#search'
+    post 'updatesubs/subscribeds' => 'subscribeds#updatesubs'
+    get 'subscribeds/:id' => 'subscribeds#index', as: :show_presences
 
 
     resources :contents

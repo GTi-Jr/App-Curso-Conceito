@@ -5,7 +5,7 @@ class Api::Subscribe::SubscribesController < ApplicationController
   #is_present, lesson_id, user_id
   def request_sub
   	params[:is_present] = false
-  	params[:user_id] = current_admin.id
+  	params[:user_id] = current_user.id
   	subscribe = Subscribed.process(subscribe_params)
   	if subscribe[:status]
   		render :status => 200, :json => {success: true}

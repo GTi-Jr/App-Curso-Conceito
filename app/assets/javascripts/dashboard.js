@@ -11,6 +11,7 @@
 //= require moment/moment.min.js
 //= require datepicker/daterangepicker.js
 //= require js/custom.min.js
+//= require js/icheck.min.js
 
 function searchCategory(input) {
     var cols;
@@ -231,5 +232,14 @@ $(document).ready(function() {
         singleDatePicker: true,
         showDropdowns: true
     });
-        
+
+     
+     $('#present').on('ifClicked', function (ev) { $(ev.target).click() })
+
+
+
+
+
+
 });
+

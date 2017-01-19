@@ -11,6 +11,7 @@
   *= require data-table/responsive.bootstrap.min.css
   *= require data-table/scroller.bootstrap.min.css
   *= require data-table/custom.min.css
+  *= require css/flat_green.css
   *= require_self
 */
 .circular {
@@ -19,4 +20,7 @@
   -webkit-border-radius: 150px;
   -moz-border-radius: 150px;
   
+  }
+  .hovertolink:hover { 
+   background: #D3D3D3;
   }

@@ -1,0 +1,54 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+   <div class="x_panel">
+      <div class="x_title">
+         <h2>Lista de Inscritos</h2>
+         <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+      <%#= will_paginate @users %>
+         <table id="mytable", class="table">
+         <div class="title_right">
+               <div class=" form-group pull-right top_search">
+                  <div class="input-group">
+                    <input class="form-control" id="inputSuccess5" onkeyup="searchUsers(this.value);" class="form-control" placeholder="Procurar por nome">
+                  </div>
+                </div>
+         </div>
+            </div>
+            <thead>
+               <tr>
+
+                  <th>Avatar</th>
+                  <th>Nome</th>
+                  <th>Presença</th>
+                  
+                  <!--<th>Contato</th>-->
+                 
+                  
+               </tr>
+            </thead>
+            <tbody id="tablerowusers">
+               <% @all_subscribed.each do |subscribed| %>
+               <tr>
+
+                  <td><%= image_tag (subscribed.user.image.nil? ? '/images/default_user.jpeg' : subscribed.user.image), class:"circular"%> </td> 
+                  <td><%= subscribed.user.name%></td>
+                  
+                  <td><%= check_box_tag 'present', true, false %></td>
+
+
+                  
+                  
+                  <!--<td><%#= users.phone_number%></td>-->
+               </tr>
+               <%end%>
+               
+            </tbody>
+         </table>
+
+      </div>
+   </div>
+</div>
+
+<%#= will_paginate @users %>
+
