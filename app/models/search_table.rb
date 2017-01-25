@@ -31,6 +31,12 @@ class SearchTable < ApplicationRecord
 	  teachers_suggestions.any? ? teachers_suggestions : false
 	
 	end
+	def self.searchsubscribed(options = {})
+	  subscribed_suggestions = Subscribed.joins(:user).where("lower(users.name) LIKE ?", "#{options[:queryString]}%").limit(50)
+
+	  subscribed_suggestions.any? ? subscribed_suggestions : false
+	
+	end
 	def self.searchlesson(options = {})
 	  lesson_suggestions = Lesson.joins(:subcategory,:teacher).where("lower(subcategories.name) LIKE ? OR lower(teachers.name) LIKE ?", "#{options[:queryString]}%", "#{options[:queryString]}%")
 

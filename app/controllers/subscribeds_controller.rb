@@ -9,14 +9,17 @@ class SubscribedsController < BaseController
 
   end
 
- def update
+ def updatesubs
     @subscribed = Subscribed.find(params[:id])
-    @subscribed.update_attributes(params[:subscribed])
-    redirect_to @lessons
-  end
+    @subscribed.update(is_present: params[:is_present])
+  end 
 
   def set_subscribed
   	@all_subscribed = Subscribed.where(lesson_id: params[:id])
+  end
+def search
+    @subscribed_suggestions = SearchTable.searchsubscribed(queryString: params[:queryString].strip.downcase)
+    render json: @subscribed_suggestions, :include => {:user => { :name => :image} } 
   end
 
  

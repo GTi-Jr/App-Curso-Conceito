@@ -175,7 +175,33 @@ function searchUsers(input){
   });
 }
                
+function searchSubscribeds(input){
+  var cols;
+  $.post("/search/subscribeds", {queryString: "" + input + ""}, function(data) {
 
+    if (data===false){
+
+        cols = "";
+        cols += "<tr>";
+        cols += '<td colspan="3" style="text-align:center">Nada encontrado</td></tr>';
+    }
+
+    jQuery.each(data, (key, value) => {
+
+               /*LOAD TABLE */
+                    cols += "<tr>";
+                    if (value.user.image===null){
+                      cols += '<td><img class="circular" src="/images/default_user.jpeg"/></td>';
+                    } else {
+                      cols += '<td><img class="circular" src="'+ value.user.image+ '"/></td>';
+                    }
+                    cols += '<td>' + value.user.name + '</td>';
+                    cols += '<td> <inpup type="checkbox" name="present" id="present"' + value.is_present + 'onclick="change_presence(id_subscribed, check)"/></td>';
+                    cols += '</tr>';        
+    }); 
+    $("#tablerow").html(cols);
+  });
+}
 
 function popup(mylink, windowname) {
     if (!window.focus) return true;
@@ -234,7 +260,7 @@ $(document).ready(function() {
     });
 
      
-     $('#present').on('ifClicked', function (ev) { $(ev.target).click() })
+ 
 
 
 
@@ -243,3 +269,14 @@ $(document).ready(function() {
 
 });
 
+/* CHECKBOX PARA MARCAR SE O ALUNO ESTAVA OU NÃO PRESENTE NA AULA */
+
+function change_presence(id_subscribed, check) {
+
+
+    $.post("/updatesubs/subscribeds", {id: id_subscribed, is_present: check.checked}, function(data) {
+        alert("Alterado com sucesso.");
+
+    });
+
+}

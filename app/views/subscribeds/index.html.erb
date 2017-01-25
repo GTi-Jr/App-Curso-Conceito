@@ -10,7 +10,7 @@
          <div class="title_right">
                <div class=" form-group pull-right top_search">
                   <div class="input-group">
-                    <input class="form-control" id="inputSuccess5" onkeyup="searchUsers(this.value);" class="form-control" placeholder="Procurar por nome">
+                    <input type="text" class="form-control" id="inputSuccess5" onkeyup="searchSubscribeds(this.value);" placeholder="Procurar por nome">
                   </div>
                 </div>
          </div>
@@ -27,14 +27,14 @@
                   
                </tr>
             </thead>
-            <tbody id="tablerowusers">
+            <tbody id="tablerow">
                <% @all_subscribed.each do |subscribed| %>
                <tr>
 
                   <td><%= image_tag (subscribed.user.image.nil? ? '/images/default_user.jpeg' : subscribed.user.image), class:"circular"%> </td> 
                   <td><%= subscribed.user.name%></td>
                   
-                  <td><%= check_box_tag 'present', true, false %></td>
+                  <td><%= check_box_tag 'present',true, subscribed.is_present,  { onclick: "change_presence('#{subscribed.id}', this)" }%></td>
 
 
                   
