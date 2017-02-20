@@ -1,0 +1,70 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+   <div class="x_panel">
+      <div class="row x_title">
+         <div class="col-md-6">
+            <h3>Gerenciar aula<small> Aulas e alunos inscritos</small></h3>
+         </div>
+         <div class="col-md-6">
+            <div id="reportrange" class="pull-right" style="background: #fff; cursor:pointer; padding:6px 12px;border: 1px solid #ccc">
+               <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+               <span></span> <b class="caret"></b>
+            </div>
+            <div class="col-md-3 pull-right">
+       
+         </div>
+
+         </div>
+         
+      </div>
+      <div class="x_content">
+         <%= will_paginate @lessons%>
+         <table id="mytable", class="table">
+            <thead>
+               <tr>
+                  <!--<th>Matéria</th>-->
+                  <th>Sub Matéria</th>
+                  <th>Professor</th>
+                  <th>Data</th>
+                  <th>Horário início-término</th>
+                  <th>Limite de alunos</th>
+                  <th>Criado em</th>
+                  <th>Configurações</th>
+               </tr>
+            </thead>
+            <tbody id="tablerowlessons">
+               <% @lessons.each do |lessons| %>
+               
+               <tr class="hovertolink">
+                  <!--<td><%= lessons.subcategory.category.name%></td>--> 
+                  <td><%= lessons.subcategory.name%></td>
+                  <td><%= lessons.teacher.name%></td>
+                  <td><%= lessons.date_t.strftime("%d/%m/%Y") %></td>
+                  <td><%= lessons.lesson_hour_start.strftime("%H:%M") %> até
+                     <%=lessons.lesson_hour_end.strftime("%H:%M") %>
+                  </td>
+                  <td><%= lessons.limit%></td>
+                  <td><%= lessons.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
+                  <td colspan="3"><%= link_to show_presences_path(lessons.id) do %>
+                     <span class="fa fa-eye" aria-hidden="true" style="margin-left: 20px"></span>
+                     <% end %><i style="margin-left:3px"></i>
+                  
+                    <%= link_to  edit_lesson_path(lessons) do %>
+                     <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="margin-left: 5px"></span>
+                     <% end %> <i style="margin-left:3px"></i>
+            
+                     <%= link_to lessons, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                     <span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left: 20px"></span>
+                     <% end %>    
+                      
+                  </td>
+                  
+               </tr>
+               <%end%>
+               <!--<td colspan="7" id="error" hidden="" >Nenhum cadastro encontrado</td>-->
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <%= link_to 'Nova Aula', new_lesson_path,  class:"btn btn-success" %>
+</div>
+<%= will_paginate @lessons %>

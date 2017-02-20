@@ -1,0 +1,72 @@
+<% if @lessons.errors.any? %>
+  <script>
+   $(document).ready(function() {
+    noty({text: ' <%= pluralize(@lessons.errors.count, "erros") %> encontrados: </br><ul><% @lessons.errors.full_messages.each do |message| %><li><%= message %></li><% end %></ul>', layout: 'bottom', type: 'warning', timeout: 4000});
+  });
+  </script>
+<% end %>
+<div class="clearfix"></div>
+ <div class="row">
+   <div class="col-md-12 col-sm-12 col-xs-12">
+         <div class="x_content">
+            <br />
+            <%= form_for @lessons, :html => { class:"form-horizontal form-label-left", id:"demo-form2"  } do |f| %>
+            <div class="form-group">
+               <%= f.label :subcategory_id, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
+               <span class="required">Subcategoria *</span>
+               <% end %> 
+               <div class="col-md-6 col-sm-6 col-xs-12">
+               <%= f.select :subcategory_id, Subcategory.all.collect { |c| [ c.name, c.id ] }, { include_blank: true } , { class: "form-control" }%>
+               </div>
+               </div>
+               <div class="form-group">
+               <%= f.label :teacher_id, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
+               <span class="required">Professor *</span>
+               <% end %> 
+               <div class="col-md-6 col-sm-6 col-xs-12">
+               <%= f.select :teacher_id, Teacher.all.collect { |c| [ c.name, c.id ] }, { include_blank: true } , { class: "form-control" }%>
+               </div>
+               </div>
+                <div class="form-group">
+               <%= f.label :date, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
+               <span class="required">Data *</span>
+               <% end %> 
+               <div class="col-md-6 col-sm-6 col-xs-12">
+               <%= f.text_field :date_t, :value => '2017-01-11', class: "form-control "  %>
+               </div>
+               </div>
+               <div class="form-group">
+               <%= f.label :lesson_hour_start, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
+               <span class="required">Início da aula *</span>
+               <% end %> 
+               <div class="col-md-6 col-sm-6 col-xs-12">
+               <%= f.time_field :lesson_hour_start, { class: "form-control" }%>
+               </div>
+               </div>
+               <div class="form-group">
+               <%= f.label :lesson_hour_end, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
+               <span class="required">Término da aula *</span>
+               <% end %> 
+               <div class="col-md-6 col-sm-6 col-xs-12">
+               <%= f.time_field :lesson_hour_end,  { class: "form-control" }%>
+               </div>
+               </div>
+               <div class="form-group">
+               <%= f.label :limit, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
+               <span class="required">Limite de alunos *</span>
+               <% end %> 
+               <div class="col-md-6 col-sm-6 col-xs-12">
+               <%= f.number_field :limit, { class: "form-control" }%>
+               </div>
+               </div>
+               <div class="ln_solid"></div>
+                  <div class="form-group">
+                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <%= f.submit "Cadastrar", type:"submit", class:"btn btn-success" %>
+                        <%= link_to "Voltar", lessons_path, class:"btn btn-primary"%>
+                     </div>
+                  </div>
+               </div>
+            <% end %>
+   </div>
+</div>

@@ -1,7 +1,9 @@
 class UsersController < BaseController
    before_action :set_user, only: [:show, :edit, :update, :destroy]
+  
   def index
-    @users= User.all 	
+    @users= User.all.order('id DESC').paginate(page: params[:page], per_page: 50)
+
   end
 
   def new
@@ -11,7 +13,6 @@ class UsersController < BaseController
   def create
 
     @users = User.new(user_params)
-    @users.photo = params[:file]
     respond_to do |format|
       if @users.save
         format.html { redirect_to users_path, notice1: 'Aluno foi criado com sucesso.' }
@@ -45,11 +46,19 @@ end
     end
   end
 
+   def search
+    @users_suggestions = SearchTable.searchUsers(queryString: params[:queryString].strip.downcase)
+
+    render json: @users_suggestions
+    
+  end
+
   def set_user
       @users = User.find(params[:id])
+    #  @users.photo = params[:file]
   end
   
   def user_params
-      params.require(:user).permit(:name, :email, :password, :birthday, :phone_number, :photo)
+      params.require(:user).permit(:name, :email, :birthday, :phone_number)
   end
 end

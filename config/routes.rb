@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  
 
- 
+
+
+
   devise_for :users,  controllers: {
     sessions: 'api/users/sessions',
     confirmations: 'api/users/confirmations',
@@ -11,16 +12,9 @@ Rails.application.routes.draw do
   }
 
   authenticated :user do
-    resources :users
-    root 'api_dashboard#index'
-
+    get 'loginapi' => 'api_dashboard#index'
+    get 'subscribe/lesson/:lesson_id' => 'api/subscribe/subscribes#request_sub'
   end
-
-  unauthenticated :user do
-    root 'api_dashboard#index'
-  end
-
-
 
 
   devise_for :admins, controllers: {
@@ -42,6 +36,25 @@ Rails.application.routes.draw do
 
   authenticated :admin do
     resources :users
+    resources :categories
+    resources :subcategories
+    resources :teachers
+    resources :lessons
+
+
+    post 'search/categories' => 'categories#search'
+    post 'search/subcategories' => 'subcategories#search'
+    post 'search/users' => 'users#search'
+    post 'search/contents' => 'contents#search'
+    post 'search/teachers' => 'teachers#search'
+    post 'search/lessons' => 'lessons#search'
+    post 'search/subscribeds' => 'subscribeds#search'
+    post 'updatesubs/subscribeds' => 'subscribeds#updatesubs'
+    get 'subscribeds/:id' => 'subscribeds#index', as: :show_presences
+
+
+    resources :contents
+
   end
 
   unauthenticated :admin do
