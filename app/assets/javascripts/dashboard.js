@@ -175,10 +175,9 @@ function searchUsers(input){
   });
 }
                
-function searchSubscribeds(input){
+function searchSubscribeds(input, lesson_id) {
   var cols;
-  $.post("/search/subscribeds", {queryString: "" + input + ""}, function(data) {
-
+  $.post("/search/subscribeds", {queryString: "" + input + "",lesson_id: lesson_id}, function(data) {
     if (data===false){
 
         cols = "";
@@ -187,7 +186,6 @@ function searchSubscribeds(input){
     }
 
     jQuery.each(data, (key, value) => {
-
                /*LOAD TABLE */
                     cols += "<tr>";
                     if (value.user.image===null){
@@ -196,7 +194,11 @@ function searchSubscribeds(input){
                       cols += '<td><img class="circular" src="'+ value.user.image+ '"/></td>';
                     }
                     cols += '<td>' + value.user.name + '</td>';
-                    cols += '<td> <inpup type="checkbox" name="present" id="present"' + value.is_present + 'onclick="change_presence(id_subscribed, check)"/></td>';
+                    if(value.is_present===true) {
+                        cols += '<td> <input type="checkbox" name="present" id="present" value="true" onclick="change_presence('+value.id+', this)" checked > </td>';
+                    } else {
+                        cols += '<td> <input type="checkbox" name="present" id="present" value="true" onclick="change_presence('+value.id+', this)" > </td>';
+                    }
                     cols += '</tr>';        
     }); 
     $("#tablerow").html(cols);

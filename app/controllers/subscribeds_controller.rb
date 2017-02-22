@@ -17,9 +17,9 @@ class SubscribedsController < BaseController
   def set_subscribed
   	@all_subscribed = Subscribed.where(lesson_id: params[:id])
   end
-def search
-    @subscribed_suggestions = SearchTable.searchsubscribed(queryString: params[:queryString].strip.downcase)
-    render json: @subscribed_suggestions, :include => {:user => { :name => :image} } 
+  def search
+    @subscribed_suggestions = SearchTable.searchsubscribed(queryString: params[:queryString].strip.downcase, lesson_id:params[:lesson_id])
+    render json: @subscribed_suggestions, :include => {:user  => {:only => [:name, :image, :id]} } 
   end
 
  
