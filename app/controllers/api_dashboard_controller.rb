@@ -1,4 +1,3 @@
 class ApiDashboardController < ApplicationController
-	layout false
-
+  layout false
 end

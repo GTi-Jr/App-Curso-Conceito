@@ -1,6 +1,6 @@
 class UsersController < BaseController
-   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   def index
     @users= User.all.order('id DESC').paginate(page: params[:page], per_page: 50)
 
@@ -11,7 +11,6 @@ class UsersController < BaseController
   end
 
   def create
-
     @users = User.new(user_params)
     respond_to do |format|
       if @users.save
@@ -20,19 +19,19 @@ class UsersController < BaseController
         format.html { render :new }
         format.json { render json: @users.errors, status: :unprocessable_entity }
       end
-end
+    end
   end
 
   def edit
   end
 
-  def update 
+  def update
     respond_to do |format|
       if @users.update(user_params)
         format.html { redirect_to  users_path , notice: 'Aluno foi editado com sucesso.' }
       else
-         format.html { render :edit }
-         format.json { render json: @users.errors, status: :unprocessable_entity }
+        format.html { render :edit }
+        format.json { render json: @users.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,19 +45,17 @@ end
     end
   end
 
-   def search
+  def search
     @users_suggestions = SearchTable.searchUsers(queryString: params[:queryString].strip.downcase)
-
     render json: @users_suggestions
-    
   end
 
   def set_user
-      @users = User.find(params[:id])
+    @users = User.find(params[:id])
     #  @users.photo = params[:file]
   end
-  
+
   def user_params
-      params.require(:user).permit(:name, :email, :birthday, :phone_number)
+    params.require(:user).permit(:name, :email, :birthday, :phone_number)
   end
 end

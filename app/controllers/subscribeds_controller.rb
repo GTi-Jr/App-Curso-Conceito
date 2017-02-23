@@ -3,27 +3,25 @@ class SubscribedsController < BaseController
 
   def index
   end
-  
-  
-  def edit 
 
+  def edit
   end
 
- def updatesubs
+  def updatesubs
     @subscribed = Subscribed.find(params[:id])
     @subscribed.update(is_present: params[:is_present])
-  end 
+  end
 
   def set_subscribed
-  	@all_subscribed = Subscribed.where(lesson_id: params[:id])
+    @all_subscribed = Subscribed.where(lesson_id: params[:id])
   end
+  
   def search
     @subscribed_suggestions = SearchTable.searchsubscribed(queryString: params[:queryString].strip.downcase, lesson_id:params[:lesson_id])
-    render json: @subscribed_suggestions, :include => {:user  => {:only => [:name, :image, :id]} } 
+    render json: @subscribed_suggestions, :include => {:user  => {:only => [:name, :image, :id]} }
   end
 
- 
   def subscribed_params
-      params.require(:subscribed).permit(:user_id, :lesson_id, :is_present)
+    params.require(:subscribed).permit(:user_id, :lesson_id, :is_present)
   end
 end
