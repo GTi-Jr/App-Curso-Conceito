@@ -18,9 +18,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'api/users/omniauth_callbacks'
   }
 
-  get 'loginapi' => 'api_dashboard#index'
-
-
+  #get 'loginapi' => 'api_dashboard#index'
 
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
