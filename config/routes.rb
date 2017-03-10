@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
 
-
-
+  namespace :api do
+    # url/users/auth/facebook (GET OU POST)
+    # url/users/sign_out (GET)
+    get 'lessons/index' => 'lessons/lessons#index'
+    get 'categories/index' => 'categories/categories#index'
+    get 'subcategories/index' => 'subcategories/subcategories#index'
+    get 'contents/index' => 'contents/contents#index'
+    get 'subscribe/lesson/:lesson_id' => 'subscribe/subscribes#request_sub'
+  end
 
   devise_for :users,  controllers: {
     sessions: 'api/users/sessions',
@@ -11,10 +18,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'api/users/omniauth_callbacks'
   }
 
-  authenticated :user do
-    get 'loginapi' => 'api_dashboard#index'
-    get 'subscribe/lesson/:lesson_id' => 'api/subscribe/subscribes#request_sub'
-  end
+  get 'loginapi' => 'api_dashboard#index'
+
 
 
   devise_for :admins, controllers: {
@@ -23,7 +28,7 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords',
     registrations:'admins/registrations'
   },
-  path: '',
+    path: '',
   path_names: {
     sign_in: 'login',
     sign_out: 'logout',
@@ -52,7 +57,6 @@ Rails.application.routes.draw do
     post 'updatesubs/subscribeds' => 'subscribeds#updatesubs'
     get 'subscribeds/:id' => 'subscribeds#index', as: :show_presences
 
-
     resources :contents
 
   end
@@ -61,6 +65,6 @@ Rails.application.routes.draw do
   end
 
   root 'dashboard#index'
-  
- 
+
+
 end

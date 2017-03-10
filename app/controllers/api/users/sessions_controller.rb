@@ -2,7 +2,7 @@ class Api::Users::SessionsController < Devise::SessionsController
   #skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   skip_before_filter :verify_authenticity_token
   respond_to :json
-# before_action :configure_sign_in_params, only: [:create]
+  # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -15,9 +15,12 @@ class Api::Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    set_flash_message! :notice, :signed_out if signed_out
+    yield if block_given?
+    render :status => 200, :json => {success: true}
+  end
 
   # protected
 

@@ -1,6 +1,4 @@
-class Api::Subscribe::SubscribesController < ApplicationController
-  before_action :authenticate_user!
-  respond_to :json
+class Api::Subscribe::SubscribesController < ApplicationApiController
 
   #is_present, lesson_id, user_id
   def request_sub
