@@ -4303,3 +4303,18 @@ ul.notifications {
   border: 1px solid #e5e5e5; }
 
 /** /Dropzone.js **/
+
+
+  .daterangepicker .calendar-time {
+    text-align: center;
+    margin: auto;
+    line-height:10px;
+    position: relative;
+    padding-left: 0px; }
+    .daterangepicker .calendar-time select.disabled {
+      color: #ccc;
+      cursor: not-allowed; }
+
+      .calendar-time i {
+        display: none;
+      }

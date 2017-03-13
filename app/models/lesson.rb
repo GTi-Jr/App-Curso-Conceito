@@ -1,29 +1,32 @@
 class Lesson < ApplicationRecord
   belongs_to :subcategory
   belongs_to :teacher
+  has_one :author
 
   def self.filter(mes, ano, materia_id, pag, limit)
     reset_query_state
     @lessons = lessons.paginate(:page => pag, :per_page => limit)
 
     unless mes.nil?
-      @lessons = lessons.where('extract(month from date_t) = ?', mes)
+      @lessons = lessons.where('extract(month from lesson_hour_start) = ?', mes)
     end
 
     unless ano.nil?
-      @lessons = lessons.where('extract(year from date_t) = ?', ano)
+      @lessons = lessons.where('extract(year from lesson_hour_start) = ?', ano)
     end
 
     unless materia_id.nil?
       @lessons = lessons.where('subcategory_id = ?', materia_id)
     end
 
-    @lessons || Lesson.none
+    @lessons.order("lesson_hour_start ASC") || Lesson.none
   end
 
   def as_json(options = {})
     super(options.merge({ except: [:created_at,:updated_at] }))
   end
+
+
 
   private
 

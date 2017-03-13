@@ -27,20 +27,13 @@
                <%= f.select :teacher_id, Teacher.all.collect { |c| [ c.name, c.id ] }, { include_blank: true } , { class: "form-control" }%>
                </div>
                </div>
-                <div class="form-group">
-               <%= f.label :date, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
-               <span class="required">Data *</span>
-               <% end %> 
-               <div class="col-md-6 col-sm-6 col-xs-12">
-               <%= f.text_field :date_t, :value => '2017-01-11', class: "form-control "  %>
-               </div>
-               </div>
+
                <div class="form-group">
                <%= f.label :lesson_hour_start, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
                <span class="required">Início da aula *</span>
                <% end %> 
                <div class="col-md-6 col-sm-6 col-xs-12">
-               <%= f.time_field :lesson_hour_start, { class: "form-control" }%>
+               <%= f.text_field :lesson_hour_start, { class: "form-control", id: "hour_aulas_s"  }%>
                </div>
                </div>
                <div class="form-group">
@@ -48,7 +41,7 @@
                <span class="required">Término da aula *</span>
                <% end %> 
                <div class="col-md-6 col-sm-6 col-xs-12">
-               <%= f.time_field :lesson_hour_end,  { class: "form-control" }%>
+               <%= f.text_field :lesson_hour_end,  { class: "form-control", id: "hour_aulas_e" }%>
                </div>
                </div>
                <div class="form-group">

@@ -24,7 +24,6 @@
                   <!--<th>Matéria</th>-->
                   <th>Sub Matéria</th>
                   <th>Professor</th>
-                  <th>Data</th>
                   <th>Horário início-término</th>
                   <th>Limite de alunos</th>
                   <th>Criado em</th>
@@ -38,9 +37,8 @@
                   <!--<td><%= lessons.subcategory.category.name%></td>--> 
                   <td><%= lessons.subcategory.name%></td>
                   <td><%= lessons.teacher.name%></td>
-                  <td><%= lessons.date_t.strftime("%d/%m/%Y") %></td>
-                  <td><%= lessons.lesson_hour_start.strftime("%H:%M") %> até
-                     <%=lessons.lesson_hour_end.strftime("%H:%M") %>
+                  <td><%= lessons.lesson_hour_start.strftime("%d/%m/%Y %H:%M") %> até
+                     <%=lessons.lesson_hour_end.strftime("%d/%m/%Y %H:%M") %>
                   </td>
                   <td><%= lessons.limit%></td>
                   <td><%= lessons.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>

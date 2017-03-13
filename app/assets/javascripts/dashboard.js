@@ -264,7 +264,25 @@ $(document).ready(function() {
      
  
 
+    $('#hour_aulas_s').daterangepicker({
+        locale: {
+            format: 'YYYY-MM-DD HH:mm'
+        },
+        timePicker: true,
+        timePicker24Hour: true,
+        singleDatePicker: true,
+        showDropdowns: true
+    });
 
+     $('#hour_aulas_e').daterangepicker({
+        locale: {
+            format: 'YYYY-MM-DD HH:mm'
+        },
+        timePicker: true,
+        timePicker24Hour: true,
+        singleDatePicker: true,
+        showDropdowns: true
+    });
 
 
 

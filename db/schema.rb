@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310001304) do
+ActiveRecord::Schema.define(version: 20170313121802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20170310001304) do
     t.datetime "updated_at",        null: false
     t.integer  "subcategory_id"
     t.integer  "teacher_id"
-    t.date     "date_t"
     t.datetime "lesson_hour_start"
     t.datetime "lesson_hour_end"
     t.index ["subcategory_id"], name: "index_lessons_on_subcategory_id", using: :btree

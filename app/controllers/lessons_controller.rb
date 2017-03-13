@@ -13,9 +13,6 @@ class LessonsController < BaseController
   end
 
   def create
-    params[:lesson_hour_start] = "#{params[:date_t]} #{params[:lesson_hour_start]}"
-    params[:lesson_hour_end] = "#{params[:date_t]} #{params[:lesson_hour_end]}"
-
     @lessons = Lesson.new(lesson_params)
     respond_to do |format|
       if @lessons.save
@@ -34,9 +31,6 @@ class LessonsController < BaseController
   end
 
   def update
-    params[:lesson_hour_start] = "#{params[:date_t]} #{params[:lesson_hour_start]}"
-    params[:lesson_hour_end] = "#{params[:date_t]} #{params[:lesson_hour_end]}"
-  
     respond_to do |format|
       if @lessons.update(lesson_params)
         format.html { redirect_to  lessons_path , notice: 'Aula foi editada com sucesso.' }

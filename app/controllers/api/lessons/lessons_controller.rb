@@ -8,6 +8,7 @@ class Api::Lessons::LessonsController < ApplicationApiController
     materia = params[:subcategory_id] ? params[:subcategory_id] : nil
 
     lessons =  ::Lesson.filter(mes, ano, materia, pag, limit)
+
     render :status => 200, :json => {success: true, limit: limit, page:pag, data: lessons.as_json( :include => [{:teacher => {:except => [:created_at, :updated_at]} } , {:subcategory => {:except => [:created_at, :updated_at]}}] )}
   end
 
@@ -15,16 +16,14 @@ class Api::Lessons::LessonsController < ApplicationApiController
   def lesson_user
     data = @user.subscribed
     data_new  = Array.new
-
     data.each do |aula|
-      hora_fim = Time.parse("#{aula.lesson.date_t} #{aula.lesson.lesson_hour_end.to_s.split(' ')[1]}")
 
-      if hora_fim.past?
+      unless aula.lesson.lesson_hour_end.past?
         data_new << aula
       end
 
     end
-    render :status => 200, :json => {success: true, data: data_new}
+    render :status => 200, :json => {success: true, data: data_new.as_json(:include => [{:lesson => {:except => [:created_at, :updated_at]} } ] )}
   end
 
   def set_user
