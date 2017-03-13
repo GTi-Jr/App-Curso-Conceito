@@ -21,6 +21,10 @@ class Lesson < ApplicationRecord
     @lessons || Lesson.none
   end
 
+  def as_json(options = {})
+    super(options.merge({ except: [:created_at,:updated_at] }))
+  end
+
   private
 
   def self.lessons
@@ -30,4 +34,6 @@ class Lesson < ApplicationRecord
   def self.reset_query_state
     @lessons = nil
   end
+
+
 end

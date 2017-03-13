@@ -14,6 +14,10 @@ class Content < ApplicationRecord
     @contents || Content.none
   end
 
+  def as_json(options = {})
+    super(options.merge({ except: [:created_at,:updated_at] }))
+  end
+
   private
 
   def self.contents
