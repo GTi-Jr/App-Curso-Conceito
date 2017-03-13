@@ -19,7 +19,7 @@ class Api::Lessons::LessonsController < ApplicationApiController
     data.each do |aula|
       hora_fim = Time.parse("#{aula.lesson.date_t} #{aula.lesson.lesson_hour_end.to_s.split(' ')[1]}")
 
-      unless hora_fim.past?
+      if hora_fim.past?
         data_new << aula
       end
 
