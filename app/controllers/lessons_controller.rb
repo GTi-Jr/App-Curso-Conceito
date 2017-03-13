@@ -36,6 +36,7 @@ class LessonsController < BaseController
   def update
     params[:lesson_hour_start] = "#{params[:date_t]} #{params[:lesson_hour_start]}"
     params[:lesson_hour_end] = "#{params[:date_t]} #{params[:lesson_hour_end]}"
+  
     respond_to do |format|
       if @lessons.update(lesson_params)
         format.html { redirect_to  lessons_path , notice: 'Aula foi editada com sucesso.' }
