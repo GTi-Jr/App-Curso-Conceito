@@ -18,6 +18,6 @@ module Conceito
     config.assets.precompile =  [ '*.js', '*.scss']
     config.assets.initialize_on_precompile = false
 
-    
+    config.eager_load = true
   end
 end
