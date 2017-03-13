@@ -26,7 +26,6 @@ Lesson.create(subcategory: Subcategory.find_by(name: "Geometria"),teacher: Teach
 Lesson.create(subcategory: Subcategory.find_by(name: "Geometria"),teacher: Teacher.find_by(name: "Rudini"),date_t: "2017-01-11",lesson_hour_start: '06:00-PM',lesson_hour_end:'10:00-PM',limit: 10)
 
 
-
 User.create(name: "Lucas", email: "lucas@gmail.com",password: '123465',birthday: "18-03-1996")
 User.create(name: "Rayane", email: "rayane@gmail.com",password: '123465',birthday: "18-03-1996")
 User.create(name: "Caio", email: "caio@gmail.com",password: '123465',birthday: "18-03-1996")

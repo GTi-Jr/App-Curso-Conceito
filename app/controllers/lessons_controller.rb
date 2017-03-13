@@ -13,6 +13,9 @@ class LessonsController < BaseController
   end
 
   def create
+    params[:lesson_hour_start] = Time.parse("#{params[:date_t]} #{params[:lesson_hour_start]}")
+    params[:lesson_hour_end] = Time.parse("#{params[:date_t]} #{params[:lesson_hour_end]}")
+    
     @lessons = Lesson.new(lesson_params)
     respond_to do |format|
       if @lessons.save
