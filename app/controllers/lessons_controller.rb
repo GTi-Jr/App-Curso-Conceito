@@ -13,9 +13,9 @@ class LessonsController < BaseController
   end
 
   def create
-    params[:lesson_hour_start] = Time.parse("#{params[:date_t]} #{params[:lesson_hour_start]}")
-    params[:lesson_hour_end] = Time.parse("#{params[:date_t]} #{params[:lesson_hour_end]}")
-    
+    params[:lesson_hour_start] = "#{params[:date_t]} #{params[:lesson_hour_start]}"
+    params[:lesson_hour_end] = "#{params[:date_t]} #{params[:lesson_hour_end]}"
+
     @lessons = Lesson.new(lesson_params)
     respond_to do |format|
       if @lessons.save
@@ -34,6 +34,8 @@ class LessonsController < BaseController
   end
 
   def update
+    params[:lesson_hour_start] = "#{params[:date_t]} #{params[:lesson_hour_start]}"
+    params[:lesson_hour_end] = "#{params[:date_t]} #{params[:lesson_hour_end]}"
     respond_to do |format|
       if @lessons.update(lesson_params)
         format.html { redirect_to  lessons_path , notice: 'Aula foi editada com sucesso.' }
@@ -56,7 +58,7 @@ class LessonsController < BaseController
   def set_lesson
     @lessons = Lesson.find(params[:id])
   end
-  
+
   def search
     @lessons_suggestions = SearchTable.searchlesson(queryString: params[:queryString].strip.downcase, date_range: params[:date_range])
     #NÃO SEI A SINTAX PARA ADICIONAR CATEGORY AO INCLUDE
