@@ -4,6 +4,6 @@ class Api::Categories::CategoriesController < ApplicationApiController
     limit   = params[:limit]   ? params[:limit]   : 30
 
     categories =  ::Category.paginate(:page => pag, :per_page => limit)
-    render :status => 200, :json => {success: true, limit: limit, page:pag, data: categories}
+    render :status => 200, :json => {success: true, limit: limit, page:pag, data: categories }
   end
 end

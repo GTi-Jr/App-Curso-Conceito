@@ -5,6 +5,6 @@ class Api::Contents::ContentsController < ApplicationApiController
     subcategory_id = params[:subcategory_id] ? params[:subcategory_id] : nil
 
     contents =  ::Content.filter(subcategory_id, pag, limit)
-    render :status => 200, :json => {success: true, limit: limit, page:pag, data: contents}
+    render :status => 200, :json => {success: true, limit: limit, page:pag, data: contents.as_json( :include => [{:subcategory => {:except => [:created_at, :updated_at]} } ] )}
   end
 end
