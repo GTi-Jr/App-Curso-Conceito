@@ -26,6 +26,7 @@
                   <th>Professor</th>
                   <th>Horário início-término</th>
                   <th>Limite de alunos</th>
+                  <th>Inscritos</th>
                   <th>Criado em</th>
                   <th>Configurações</th>
                </tr>
@@ -41,6 +42,7 @@
                      <%=lessons.lesson_hour_end.strftime("%d/%m/%Y %H:%M") %>
                   </td>
                   <td><%= lessons.limit%></td>
+                  <td><%= lessons.subscribers %></td>
                   <td><%= lessons.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
                   <td colspan="3"><%= link_to show_presences_path(lessons.id) do %>
                      <span class="fa fa-eye" aria-hidden="true" style="margin-left: 20px"></span>

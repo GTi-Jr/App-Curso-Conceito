@@ -10,6 +10,7 @@ class Subscribed < ApplicationRecord
   def self.process(options)
     @subscribed_new = Subscribed.new(options)
     if @subscribed_new.save
+      @subscribed_new.lesson.increment!(:subscribers)
       return {status: true, message: ''}
     else
       return {status: false, message:  @subscribed_new.errors.messages }
