@@ -1,17 +1,5 @@
-//= require bootstrap/dist/js/bootstrap.min.js
-//= require fastclick/lib/fastclick.js
-//= require nprogress/nprogress.js
-//= require Chart.js/dist/Chart.min.js
-//= require jquery-sparkline/dist/jquery.sparkline.min.js
-//= require Flot/jquery.flot.js
-//= require Flot/jquery.flot.pie.js
-//= require Flot/jquery.flot.time.js
-//= require Flot/jquery.flot.stack.js
-//= require Flot/jquery.flot.resize.js
-//= require moment/moment.min.js
-//= require datepicker/daterangepicker.js
-//= require js/custom.min.js
-//= require js/icheck.min.js
+
+
 
 function searchCategory(input) {
     var cols;
@@ -297,3 +285,4 @@ function change_presence(id_subscribed, check) {
     });
 
 }
+;
