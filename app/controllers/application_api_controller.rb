@@ -1,5 +1,5 @@
 class ApplicationApiController < ApplicationController
-  before_action :user_api
+  #before_action :user_api
   respond_to :json
   private
   #LOGADO?

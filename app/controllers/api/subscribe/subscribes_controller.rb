@@ -1,5 +1,5 @@
 class Api::Subscribe::SubscribesController < ApplicationApiController
-
+  before_action :user_api
   #is_present, lesson_id, user_id
   def request_sub
     params[:is_present] = false
