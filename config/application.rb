@@ -14,6 +14,10 @@ module Conceito
 
     config.time_zone = 'America/Fortaleza'
     config.i18n.default_locale = :'pt-BR'
-    config.serve_static_assets = true
+
+    config.assets.precompile =  [ '*.js', '*.scss']
+    config.assets.initialize_on_precompile = false
+
+    
   end
 end
