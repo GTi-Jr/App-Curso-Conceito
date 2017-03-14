@@ -1,5 +1,6 @@
 class Api::Subscribe::SubscribesController < ApplicationApiController
   before_action :user_api
+  skip_before_filter :verify_authenticity_token  
   #is_present, lesson_id, user_id
   def request_sub
     params[:is_present] = false

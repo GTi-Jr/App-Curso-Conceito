@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     devise_scope :user do
       post "users/facebook", to: "users/sessions#gti_login_face"
     end
+    
   end
 
   devise_for :users,  controllers: {
@@ -47,7 +48,6 @@ Rails.application.routes.draw do
     resources :teachers
     resources :lessons
 
-
     post 'search/categories' => 'categories#search'
     post 'search/subcategories' => 'subcategories#search'
     post 'search/users' => 'users#search'
@@ -59,7 +59,6 @@ Rails.application.routes.draw do
     get 'subscribeds/:id' => 'subscribeds#index', as: :show_presences
 
     resources :contents
-
   end
 
   unauthenticated :admin do
