@@ -3,7 +3,7 @@ class Subscribed < ApplicationRecord
   belongs_to :user
 
 
-    serialize :column, JSON
+  serialize :column, JSON
 
   validates_uniqueness_of :user_id, :scope => :lesson_id, message: "ID %{value} já foi cadastrado nesta aula."
 
@@ -18,7 +18,7 @@ class Subscribed < ApplicationRecord
   end
 
   def as_json(options = {})
-    super(options.merge({ except: [:created_at,:updated_at] }))  
+    super(options.merge({ except: [:created_at,:updated_at] }))
   end
 
 
