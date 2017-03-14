@@ -13,11 +13,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'naoresponda@cursoconceito.com'
-  if Rails.env.development? || Rails.env.test?
-    config.omniauth :facebook, "1376293292429216", "349d1494eb31c758c375b081632cc842", scope: "email, user_birthday", info_fields: 'name, gender, email, birthday'
-  else
-    config.omniauth :facebook, "1302874983104381", "1fcdcf8239344853bdcd35fe1f09e078", scope: "email, user_birthday", info_fields: 'name, gender, email, birthday'
-  end
+  
   
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

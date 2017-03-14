@@ -4,28 +4,31 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  devise :omniauthable, :omniauth_providers => [:facebook]
-
   has_many :subscribed
 
-
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
+    where(uid: auth[:uid]).update(
+      :email => auth[:email],
+      :name => auth[:name],
+      :image => auth[:image],
+      :oauth_token => auth[:token]
+    )
+    where(uid: auth[:uid]).first_or_create do |user|
+      user.email = auth[:email]
       user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
-      user.image = auth.info.image
-      if auth.extra.raw_info.birthday.nil?
+      user.name = auth[:name] 
+      user.image = auth[:image]
+      if auth[:birthday].nil?
         user.birthday = nil
       else
-        user.birthday = Date.strptime(auth.extra.raw_info.birthday, "%m/%d/%Y")
+        user.birthday = Date.strptime(auth[:birthday], "%m/%d/%Y")
       end
-      user.oauth_token = auth.credentials.token #aqui você pode receber o token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.oauth_token = auth[:token] 
       user.save!
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
     end
+  end
+
+  def as_json(options = {})
+    super(options.merge({ except: [:created_at,:updated_at, :provider, :oauth_expires_at, :oauth_token, :uid, :phone_number, :blocked] }))  
   end
 end

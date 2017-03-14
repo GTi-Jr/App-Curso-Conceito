@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 # GTIJR
 gem 'devise'
 gem 'rubocop', require: false
-gem 'omniauth'
-gem 'omniauth-facebook', '4.0.0'
 gem 'fog'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

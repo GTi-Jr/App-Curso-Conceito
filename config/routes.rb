@@ -1,22 +1,24 @@
 Rails.application.routes.draw do
 
   namespace :api do
-    # url/users/auth/facebook (GET OU POST)
-    # url/users/sign_out (GET)
+
     get 'lessons/index' => 'lessons/lessons#index'
     get 'categories/index' => 'categories/categories#index'
     get 'subcategories/index' => 'subcategories/subcategories#index'
     get 'contents/index' => 'contents/contents#index'
     get 'subscribe/lesson/:lesson_id' => 'subscribe/subscribes#request_sub'
     get 'lessons/user/:user_id' => 'lessons/lessons#lesson_user'
+
+    devise_scope :user do
+      post "users/facebook", to: "users/sessions#gti_login_face"
+    end
   end
 
   devise_for :users,  controllers: {
     sessions: 'api/users/sessions',
     confirmations: 'api/users/confirmations',
     passwords: 'api/users/passwords',
-    registrations:'api/users/registrations',
-    omniauth_callbacks: 'api/users/omniauth_callbacks'
+    registrations:'api/users/registrations'
   }
 
   #get 'loginapi' => 'api_dashboard#index'
