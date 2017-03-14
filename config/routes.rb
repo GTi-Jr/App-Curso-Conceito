@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'categories/index' => 'categories/categories#index'
     get 'subcategories/index' => 'subcategories/subcategories#index'
     get 'contents/index' => 'contents/contents#index'
-    get 'subscribe/lesson/:lesson_id' => 'subscribe/subscribes#request_sub'
+    patch 'subscribe/lesson/:lesson_id' => 'subscribe/subscribes#request_sub'
     get 'lessons/user/:user_id' => 'lessons/lessons#lesson_user'
 
     devise_scope :user do
