@@ -4,6 +4,7 @@
          <h2>Gerenciamento de Professores</h2>
          <div class="clearfix"></div>
       </div>
+      <%= link_to 'Novo Professor', new_teacher_path,  class:"btn btn-success" %>
       <div class="x_content">
          <%= will_paginate @teachers %>
          <table id="mytable", class="table table-striped table-bordered">
@@ -42,6 +43,7 @@
          </table>
       </div>
    </div>
+   <div class="x_panel">
    <%= link_to 'Novo Professor', new_teacher_path,  class:"btn btn-success" %>
-</div>
+</div></div>
 <%= will_paginate @teachers %>

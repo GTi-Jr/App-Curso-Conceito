@@ -16,13 +16,15 @@
          </div>
          
       </div>
+      <%= link_to 'Nova Aula', new_lesson_path,  class:"btn btn-success" %>
       <div class="x_content">
          <%= will_paginate @lessons%>
          <table id="mytable", class="table">
             <thead>
                <tr>
                   <!--<th>Matéria</th>-->
-                  <th>Sub Matéria</th>
+                  <th>Título</th>
+                  <th>Matéria</th>
                   <th>Professor</th>
                   <th>Horário início-término</th>
                   <th>Limite de alunos</th>
@@ -35,8 +37,8 @@
                <% @lessons.each do |lessons| %>
                
                <tr class="hovertolink">
-                  <!--<td><%= lessons.subcategory.category.name%></td>--> 
-                  <td><%= lessons.subcategory.name%></td>
+                  <td><%= lessons.title%></td>  
+                  <td><%= lessons.category.name%></td>
                   <td><%= lessons.teacher.name%></td>
                   <td><%= lessons.lesson_hour_start.strftime("%d/%m/%Y %H:%M") %> até
                      <%=lessons.lesson_hour_end.strftime("%d/%m/%Y %H:%M") %>
@@ -65,6 +67,8 @@
          </table>
       </div>
    </div>
+   <div class="x_panel">
    <%= link_to 'Nova Aula', new_lesson_path,  class:"btn btn-success" %>
+</div>
 </div>
 <%= will_paginate @lessons %>
