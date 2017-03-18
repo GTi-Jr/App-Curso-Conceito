@@ -12,6 +12,9 @@
   *= require data-table/scroller.bootstrap.min.css
   *= require data-table/custom.min.css
   *= require css/flat_green.css
+  *= require fullcalendar/fullcalendar.min.css
+
+
   *= require_self
 */
 .circular {
@@ -23,4 +26,8 @@
   }
   .hovertolink:hover { 
    background: #D3D3D3;
+  }#calendar {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 10px;
   }

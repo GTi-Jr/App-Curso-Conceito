@@ -6,5 +6,6 @@ class DashboardController < BaseController
     @contentcount = Content.all.count
     @categorycount = Category.all.count
     @subcategorycount = Subcategory.all.count
+    @lessons = Lesson.all
   end
 end

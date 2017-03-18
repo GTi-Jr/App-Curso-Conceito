@@ -1,24 +1,31 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
    <div class="x_panel">
-      <div class="row x_title">
-         <div class="col-md-6">
-            <h3>Gerenciamento de aula<small> aulas e alunos inscritos</small></h3>
+      <div class="x_title">
+      <div class="page-title">
+         <div class="title_left">
+         <h2>Gerenciamento de Aulas<small> aulas e alunos inscritos</small></h2>
          </div>
-         <div class="col-md-6">
-            <div id="reportrange" class="pull-right" style="background: #fff; cursor:pointer; padding:6px 12px;border: 1px solid #ccc">
+         <div class="title_right">
+         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+            
+            <div id="reportrange" style="background: #fff; margin-bottom:2px; cursor:pointer; padding:6px 12px;border: 1px solid #ccc">
                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                <span></span> <b class="caret"></b>
             </div>
             <div class="col-md-3 pull-right">
-       
+       </div>
          </div>
-
          </div>
-         
       </div>
-      <%= link_to 'Nova Aula', new_lesson_path,  class:"btn btn-primary" %>
-      <div class="x_content">
+      </div>
+      </div>
+         <div class="clearfix"></div>
+
+      <div class="container-fluid" style="overflow-x: auto; overflow-x: scroll;">
          <%= will_paginate @lessons%>
+         <%= link_to 'Nova Aula', new_lesson_path,  class:"btn btn-primary" %>
+
          <table id="mytable", class="table">
             <thead>
                <tr>
@@ -67,8 +74,5 @@
          </table>
       </div>
    </div>
-   <div class="x_panel">
-   <%= link_to 'Nova Aula', new_lesson_path,  class:"btn btn-primary" %>
-</div>
 </div>
 <%= will_paginate @lessons %>

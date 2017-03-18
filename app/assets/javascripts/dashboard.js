@@ -12,6 +12,9 @@
 //= require datepicker/daterangepicker.js
 //= require js/custom.min.js
 //= require js/icheck.min.js
+//= require fullcalendar/fullcalendar.min.js
+//= require fullcalendar/locale-all.js
+
 
 function searchCategory(input) {
     var cols;
@@ -297,3 +300,9 @@ function change_presence(id_subscribed, check) {
     });
 
 }
+
+
+
+   
+
+
