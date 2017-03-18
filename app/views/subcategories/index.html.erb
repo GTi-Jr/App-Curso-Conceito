@@ -1,9 +1,10 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
    <div class="x_panel">
       <div class="x_title">
-         <h2>Gerenciamento de Subcategorias</h2>
+         <h2>Gerenciamento de Sub Matérias</h2>
          <div class="clearfix"></div>
       </div>
+      <%= link_to 'Nova Subcategoria', new_subcategory_path,  class:"btn btn-primary" %>
       <div class="x_content">
          <%= will_paginate @subcategories %>
          <table id="mytable", class="table table-striped table-bordered">
@@ -41,6 +42,8 @@
          </table>
       </div>
    </div>
-   <%= link_to 'Nova Subcategoria', new_subcategory_path,  class:"btn btn-success" %>
+   <div class="x_panel">
+   <%= link_to 'Nova Subcategoria', new_subcategory_path,  class:"btn btn-primary" %>
+</div>
 </div>
 <%= will_paginate @subcategories %>

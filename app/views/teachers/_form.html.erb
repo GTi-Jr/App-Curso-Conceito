@@ -23,7 +23,7 @@
                   </div>
                <div class="form-group">
                <%= f.label :category_id, class:"control-label col-md-3 col-sm-3 col-xs-12" do %>
-               <span class="required">Categoria *</span>
+               <span class="required">Matéria *</span>
                <% end %> 
                <div class="col-md-6 col-sm-6 col-xs-12">
                <%= f.select :category_id, Category.all.collect { |c| [ c.name, c.id ] }, { include_blank: true } , { class: "form-control" }%>

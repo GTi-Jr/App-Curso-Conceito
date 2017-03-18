@@ -62,12 +62,11 @@ ActiveRecord::Schema.define(version: 20170318004620) do
     t.integer  "limit"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.integer  "subcategory_id"
     t.integer  "teacher_id"
     t.datetime "lesson_hour_start"
     t.datetime "lesson_hour_end"
     t.integer  "subscribers",       default: 0
-    t.index ["subcategory_id"], name: "index_lessons_on_subcategory_id", using: :btree
+    t.string   "title"
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id", using: :btree
   end
 
@@ -129,7 +128,6 @@ ActiveRecord::Schema.define(version: 20170318004620) do
   end
 
   add_foreign_key "contents", "subcategories"
-  add_foreign_key "lessons", "subcategories"
   add_foreign_key "lessons", "teachers"
   add_foreign_key "subcategories", "categories"
   add_foreign_key "teachers", "categories"

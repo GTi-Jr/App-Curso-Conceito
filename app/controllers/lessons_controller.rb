@@ -58,10 +58,10 @@ class LessonsController < BaseController
     @lessons_suggestions = SearchTable.searchlesson(queryString: params[:queryString].strip.downcase, date_range: params[:date_range])
     #NÃO SEI A SINTAX PARA ADICIONAR CATEGORY AO INCLUDE
     #se n der certo, vou adicionar category_id ao model msm. :) rayane
-    render json: @lessons_suggestions, :include => {:subcategory => {:only => :name}, :teacher => {:only => :name}}
+    render json: @lessons_suggestions, :include => {:category => {:only => :name}, :teacher => {:only => :name}}
   end
 
   def lesson_params
-    params.require(:lesson).permit(:teacher_id, :date_t, :lesson_hour_start, :lesson_hour_end, :limit, :subcategory_id)
+    params.require(:lesson).permit(:title, :teacher_id, :date_t, :lesson_hour_start, :lesson_hour_end, :limit, :category_id)
   end
 end
