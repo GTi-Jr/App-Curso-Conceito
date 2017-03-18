@@ -4,7 +4,7 @@ for i in 0..100
     inicio = Faker::Time.forward(((1..8).to_a).sample, :morning)
     fim = inicio + 2.hours
 
-    lesson.subcategory_id = ((1..5).to_a).sample
+    lesson.category_id = ((1..5).to_a).sample
     lesson.lesson_hour_start = inicio
     lesson.lesson_hour_end = fim
 
