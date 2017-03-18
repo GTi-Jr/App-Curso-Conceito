@@ -19,5 +19,7 @@ module Conceito
     config.assets.initialize_on_precompile = false
 
     config.eager_load = true
+    config.active_record.time_zone_aware_types = [:datetime]
+
   end
 end
