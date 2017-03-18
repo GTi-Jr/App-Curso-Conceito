@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317181651) do
+ActiveRecord::Schema.define(version: 20170318004620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 20170317181651) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["subcategory_id"], name: "index_contents_on_subcategory_id", using: :btree
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.time     "event_hour_start"
+    t.time     "event_hour_end"
+    t.string   "event_week",       default: "0,0,0,0,0,0,0"
+    t.integer  "user_id"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   create_table "lessons", force: :cascade do |t|

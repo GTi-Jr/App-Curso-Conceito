@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     get 'contents/index' => 'contents/contents#index'
     patch 'subscribe/lesson/:lesson_id' => 'subscribe/subscribes#request_sub'
     get 'lessons/user/:user_id' => 'lessons/lessons#lesson_user'
+    get 'events/index' => 'events/events#index'
+    post 'events/create' => 'events/events#create'
+    post 'events/edit/:id' => 'events/events#edit'
 
     devise_scope :user do
       post "users/facebook", to: "users/sessions#gti_login_face"
