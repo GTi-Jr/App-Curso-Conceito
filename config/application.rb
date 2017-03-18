@@ -16,7 +16,7 @@ module Conceito
     config.i18n.default_locale = :'pt-BR'
 
     config.assets.precompile =  [ '*.js', '*.scss']
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
 
     config.eager_load = true
     config.active_record.time_zone_aware_types = [:datetime]
