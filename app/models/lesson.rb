@@ -16,7 +16,7 @@ class Lesson < ApplicationRecord
     end
 
     unless materia_id.nil?
-      @lessons = lessons.where('subcategory_id = ?', materia_id)
+      @lessons = lessons.where('category_id = ?', materia_id)
     end
 
     @lessons.order("lesson_hour_start ASC") || Lesson.none
