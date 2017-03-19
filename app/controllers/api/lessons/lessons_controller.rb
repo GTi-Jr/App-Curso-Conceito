@@ -9,7 +9,7 @@ class Api::Lessons::LessonsController < ApplicationApiController
 
     lessons =  ::Lesson.filter(mes, ano, materia, pag, limit)
 
-    render :status => 200, :json => {success: true, limit: limit, page:pag, data: lessons.as_json( :include => [{:teacher => {:except => [:created_at, :updated_at]} } , {:subcategory => {:except => [:created_at, :updated_at]}}] )}
+    render :status => 200, :json => {success: true, limit: limit, page:pag, data: lessons.as_json( :include => [{:teacher => {:except => [:created_at, :updated_at]} } , {:category => {:except => [:created_at, :updated_at]}}] )}
   end
 
   #Retornar aulas de um usuário
