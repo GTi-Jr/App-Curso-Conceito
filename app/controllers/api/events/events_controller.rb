@@ -49,6 +49,7 @@ class Api::Events::EventsController < ApplicationApiController
   end
 
   def check_conflicts_time
+    return true if params[:event_week].nil?
     #Lista todos os eventos do usuario atual
     @my_events = Event.where(user_id: current_user.id)
     @my_events.each do |event|
