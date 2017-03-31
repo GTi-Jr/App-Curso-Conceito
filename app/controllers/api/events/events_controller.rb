@@ -4,8 +4,8 @@ class Api::Events::EventsController < ApplicationApiController
   before_action :user_api
   before_action :set_event_edit_delete, only: [:edit, :delete]
   before_action :filter_week, except: [:index, :delete]
-  before_action :filter_hours, except: [:index, :delete]
-  before_action :check_conflicts_time, only: [:create, :edit]
+  #before_action :filter_hours, except: [:index, :delete]
+  #before_action :check_conflicts_time, only: [:create, :edit]
 
   def index
     pag = params[:page] || 1
