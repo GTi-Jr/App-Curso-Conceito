@@ -63,3 +63,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave', '~> 1.0'
 # gem de paginação para users table
 gem 'will_paginate', '~> 3.1.0'
+#  Upload files encoded as base64 to carrierwave 
+gem 'carrierwave-base64'

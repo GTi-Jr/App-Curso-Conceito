@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   namespace :api do
 
     get 'lessons/index' => 'lessons/lessons#index'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     get 'events/index' => 'events/events#index'
     post 'events/create' => 'events/events#create'
     post 'events/edit/:id' => 'events/events#edit'
+    post 'redactions/create' =>'redactions/redactions#create'
 
     devise_scope :user do
       post "users/facebook", to: "users/sessions#gti_login_face"
@@ -50,6 +52,8 @@ Rails.application.routes.draw do
     resources :subcategories
     resources :teachers
     resources :lessons
+    resources :redactions, only: [:index]
+
 
     post 'search/categories' => 'categories#search'
     post 'search/subcategories' => 'subcategories#search'
