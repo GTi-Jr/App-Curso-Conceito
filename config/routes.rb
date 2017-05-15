@@ -13,11 +13,12 @@ Rails.application.routes.draw do
     post 'events/create' => 'events/events#create'
     post 'events/edit/:id' => 'events/events#edit'
     post 'redactions/create' =>'redactions/redactions#create'
+    delete 'events/delete/:id' => 'events/events#delete'
 
     devise_scope :user do
       post "users/facebook", to: "users/sessions#gti_login_face"
     end
-    
+
   end
 
   devise_for :users,  controllers: {
