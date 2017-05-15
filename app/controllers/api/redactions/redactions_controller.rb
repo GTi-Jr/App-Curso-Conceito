@@ -14,7 +14,7 @@ end
   private
   
   def redactions_params
-    params.permit(:picture, :howreceive)
+    params.permit(:picture, :howreceive, :redaction_title)
   end
 
 

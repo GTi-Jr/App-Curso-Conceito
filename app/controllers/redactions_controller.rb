@@ -47,6 +47,6 @@ class RedactionsController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def redaction_params
-      params.require(:redaction).permit(:picture, :howreceive)
+      params.require(:redaction).permit(:picture, :howreceive, :redaction_title)
     end
 end

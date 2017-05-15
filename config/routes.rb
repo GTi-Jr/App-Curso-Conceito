@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     resources :subcategories
     resources :teachers
     resources :lessons
-    resources :redactions
+    resources :redactions, :only => [:index, :destroy]
 
 
     post 'search/categories' => 'categories#search'
