@@ -1,16 +1,16 @@
 class Api::Redactions::RedactionsController < ApplicationApiController
-	skip_before_filter :verify_authenticity_token
-  
+  skip_before_action :verify_authenticity_token
+  before_action :redactions_params
+
+
 
   def create
-
-    redactions = Redactions.new(redactions_params)
-    redactions.save!
-    
-    render :status => 200, :json => {success: true, action: 'create' , data: redactions.as_json}
-  	puts "recebeu chamada no json"
+    redaction = Redaction.new(redactions_params)
+    if redaction.save
+      render :status => 200, :json => {success: true, action: 'create' , data: redaction.as_json}
   end
-
+end
+  
   private
   
   def redactions_params
@@ -20,3 +20,4 @@ class Api::Redactions::RedactionsController < ApplicationApiController
 
   
 end
+

@@ -1,10 +1,10 @@
 class RedactionsController < BaseController
-  before_action :set_redaction, only: [:destroy]
+  before_action :set_redaction, only: [ :destroy]
 
   # GET /redactions
   # GET /redactions.json
   def index
-    @redactions = Redaction.all.order('id DESC').paginate(page: params[:page], per_page: 50)
+    @redaction = Redaction.all.order('id DESC').paginate(page: params[:page], per_page: 50)
   end
 
 
