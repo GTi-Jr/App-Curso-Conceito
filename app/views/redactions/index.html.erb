@@ -27,9 +27,8 @@
                 <% @redaction.each do |redaction| %>
                   <tr>
                     <td><a href="javascript:void(0)" onclick="popup('<%= redaction.picture %>')">Abrir Redação</a></td>
-
-                    <td><%= redaction.howreceive %></td>
                     <td><%= redaction.redaction_title %></td>
+                    <td><%= redaction.howreceive %></td>
                     <td>
                      <%= link_to redaction, method: :delete, data: { confirm: 'Are you sure?' } do %>
                      <span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left: 20px"></span>
