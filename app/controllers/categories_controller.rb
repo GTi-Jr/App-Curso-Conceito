@@ -2,7 +2,7 @@ class CategoriesController < BaseController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories= Category.all.order('id DESC').paginate(page: params[:page], per_page: 50)
+    @categories= Category.all.order('id DESC')
   end
 
   def new

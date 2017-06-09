@@ -2,7 +2,7 @@ class SubcategoriesController < BaseController
   before_action :set_subcategory, only: [:show, :edit, :update, :destroy]
 
   def index
-    @subcategories = Subcategory.all.order('id DESC').paginate(page: params[:page], per_page: 50)
+    @subcategories = Subcategory.all.order('id DESC')
   end
 
   def new

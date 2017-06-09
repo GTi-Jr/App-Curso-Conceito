@@ -2,7 +2,7 @@ class ContentsController < BaseController
   before_action :set_content, only: [:edit, :update, :destroy]
 
   def index
-    @contents = Content.all.order('id DESC').paginate(page: params[:page], per_page: 50)
+    @contents = Content.all.order('id DESC')
   end
 
   def new
